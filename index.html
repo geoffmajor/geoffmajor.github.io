@@ -37,8 +37,18 @@
       <!-- HERO -->
       <section id="top" class="hero">
         <div class="hero-copy">
+          <!-- Mobile-only profile strip (keeps avatar intentional on small screens) -->
+          <div class="profile-strip" aria-label="Profile">
+            <img class="avatar-small" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
+            <div class="profile-strip-text">
+              <div class="profile-name">Geoffrey Major</div>
+              <div class="profile-meta">Reno, NV • Remote</div>
+            </div>
+          </div>
+
           <p class="kicker">Quality Assurance Engineer</p>
           <h1>Release confidence through pragmatic testing and automation.</h1>
+
           <p class="lead">
             QA engineer with 8 years of experience across manual testing, exploratory testing, and UI/API automation for
             web, mobile, and desktop applications. I work closely with engineering and product to reduce regressions,
@@ -54,11 +64,26 @@
             </a>
           </div>
 
-          <p class="meta">Reno, NV • Remote</p>
+          <p class="meta desktop-only">Reno, NV • Remote</p>
+
+          <!-- On mobile, show focus areas after the copy -->
+          <div class="panel mobile-only">
+            <h2 class="panel-title">Focus Areas</h2>
+            <ul class="bullets">
+              <li>Automation that supports fast releases (Playwright, Cypress)</li>
+              <li>Exploratory and risk-based testing</li>
+              <li>API validation (Postman) and data checks (SQL)</li>
+              <li>CI feedback loops (GitHub Actions)</li>
+            </ul>
+          </div>
         </div>
 
-        <aside class="hero-aside">
-          <img class="avatar" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
+        <!-- Desktop-only aside (keeps layout clean and avoids “avatar in the middle” on mobile) -->
+        <aside class="hero-aside desktop-only">
+          <div class="avatar-card">
+            <img class="avatar" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
+          </div>
+
           <div class="panel">
             <h2 class="panel-title">Focus Areas</h2>
             <ul class="bullets">
@@ -84,6 +109,9 @@
               <h3>Quality Assurance Engineer</h3>
               <p class="card-meta">Worth AI • Remote • Oct 2025 – Present</p>
             </div>
+            <div class="card-side" aria-hidden="true">
+              <img class="company-logo" src="./assets/worth-logo.png" alt="" />
+            </div>
           </header>
           <ul class="bullets">
             <li>Own release confidence across multiple product areas through risk-based testing and tight feedback loops with engineering and product.</li>
@@ -98,6 +126,9 @@
             <div class="card-main">
               <h3>QA Automation Engineer</h3>
               <p class="card-meta">Castiron • Remote • Aug 2022 – Sep 2025</p>
+            </div>
+            <div class="card-side" aria-hidden="true">
+              <img class="company-logo" src="./assets/castiron-logo.jpg" alt="" />
             </div>
           </header>
           <ul class="bullets">
@@ -114,6 +145,9 @@
               <h3>Quality Assurance Engineer</h3>
               <p class="card-meta">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</p>
             </div>
+            <div class="card-side" aria-hidden="true">
+              <img class="company-logo" src="./assets/bottomline-logo.png" alt="" />
+            </div>
           </header>
           <ul class="bullets">
             <li>Built Cypress tests to establish baseline coverage for high-priority workflows in a legacy payments platform.</li>
@@ -127,6 +161,9 @@
             <div class="card-main">
               <h3>Software QA Lead</h3>
               <p class="card-meta">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
+            </div>
+            <div class="card-side" aria-hidden="true">
+              <img class="company-logo" src="./assets/trainerroad-logo.png" alt="" />
             </div>
           </header>
           <ul class="bullets">
@@ -142,6 +179,9 @@
             <div class="card-main">
               <h3>Software QA Analyst</h3>
               <p class="card-meta">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</p>
+            </div>
+            <div class="card-side" aria-hidden="true">
+              <img class="company-logo" src="./assets/trainerroad-logo.png" alt="" />
             </div>
           </header>
           <ul class="bullets">
@@ -323,7 +363,6 @@
     </footer>
 
     <script>
-      // Year
       document.getElementById("year").textContent = new Date().getFullYear();
 
       // Form: prevent double submit + show status (and spinner)
@@ -384,20 +423,7 @@
             form.reset();
             setStatus("Thanks. Your message was sent.", "ok");
           } else {
-            let detail = "";
-            try {
-              const json = await response.json();
-              if (json && json.errors && json.errors.length) {
-                detail = json.errors.map((e) => e.message).join(" ");
-              }
-            } catch (_) {}
-
-            setStatus(
-              detail
-                ? `Something went wrong: ${detail}`
-                : "Something went wrong. Please try again, or email me directly.",
-              "error"
-            );
+            setStatus("Something went wrong. Please try again, or email me directly.", "error");
           }
         } catch (err) {
           setStatus("Network error. Please try again, or email me directly.", "error");
@@ -419,7 +445,6 @@
         },
         { threshold: 0.12 }
       );
-
       reveals.forEach((el) => io.observe(el));
     </script>
   </body>
