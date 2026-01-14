@@ -45,8 +45,6 @@
 
           <div class="meta">
             <span>Reno, NV</span>
-            <span class="dot">•</span>
-            <span>(775) 830-0773</span>
           </div>
         </div>
 
@@ -166,13 +164,43 @@
 
       <section id="contact" class="section">
         <h2>Contact</h2>
-        <div class="contact">
-          <a class="button" href="mailto:geoffreymajor@gmail.com">Email</a>
-          <a class="button secondary" href="https://linkedin.com/in/gcmajor" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
-        <p class="contact-note">Reno, NV • (775) 830-0773</p>
+
+        <form class="form" action="https://formspree.io/f/xdaakezg" method="POST">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+
+          <!-- Honeypot (spam protection, invisible to users) -->
+          <input type="text" name="_gotcha" style="display:none" />
+
+          <div class="form-actions">
+            <button class="button" type="submit">Send message</button>
+            <a 
+              class="button secondary" 
+              href="https://linkedin.com/in/gcmajor" 
+              target="_blank" 
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </form>
+        
+        <p class="form-success" hidden>
+          Thanks for reaching out. I will get back to you shortly.
+        </p>
       </section>
-    </main>
 
     <footer class="container footer">
       <span>© <span id="year"></span> Geoffrey Major</span>
@@ -182,6 +210,34 @@
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+      const form = document.querySelector(".form");
+      const success = document.querySelector(".form-success");
+
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const data = new FormData(form);
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (response.ok) {
+            form.reset();
+            form.hidden = true;
+            success.hidden = false;
+          } else {
+            alert("Something went wrong. Please try again later.");
+          }
+        });
+      }
     </script>
   </body>
 </html>
