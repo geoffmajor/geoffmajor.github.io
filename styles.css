@@ -450,29 +450,39 @@ h1 {
 
 button.button { color: var(--text); }
 
-/* Icon-only button (LinkedIn) */
-.icon-button {
-  width: 44px;
-  height: 44px;
-  padding: 0;
-
+/* LinkedIn icon link (no button chrome) */
+.social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
+  /* gives it a reasonable click target without looking like a button */
+  padding: 4px;
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  transition: transform 160ms ease, opacity 160ms ease;
 }
 
-.icon-button .icon {
-  width: 22px;
+.social-icon {
   height: 22px;
+  width: auto;          /* preserves aspect ratio */
   display: block;
+  opacity: 0.9;
 }
 
-.icon-button:hover {
-  background: rgba(93, 214, 255, 0.10);
-  border-color: rgba(93, 214, 255, 0.45);
+.social-link:hover {
+  transform: translateY(-1px); /* matches your button hover lift :contentReference[oaicite:3]{index=3} */
+}
+
+.social-link:hover .social-icon {
+  opacity: 1;
+}
+
+.social-link:focus-visible {
+  outline: 2px solid rgba(93, 214, 255, 0.85);
+  outline-offset: 3px;
 }
 
 /* Contact Form */
@@ -694,11 +704,6 @@ input:focus, textarea:focus {
 
   .hero-actions .button { width: 100%; }
   .container { padding: 18px; }
-
-  .hero-actions .icon-button {
-    width: 44px;
-    flex: 0 0 44px;
-  }
 }
 
 /* Mobile form stacking */
