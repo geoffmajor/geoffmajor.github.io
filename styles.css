@@ -16,15 +16,13 @@
   --header-h: 68px;
 }
 
-/* Anchor offset for sticky header (prevents section titles hiding behind nav) */
+/* Anchor offset for sticky header */
 section[id] {
   scroll-margin-top: calc(var(--header-h) + 18px);
 }
-
-/* On mobile, header becomes taller than --header-h, so add a bigger offset */
 @media (max-width: 700px) {
   section[id] {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 92px; /* tune if needed */
   }
 }
 
@@ -75,6 +73,13 @@ a:hover { text-decoration: underline; }
   z-index: 999;
 }
 .skip-link:focus { left: 12px; }
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid rgba(93, 214, 255, 0.85);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
 
 /* Header */
 .site-header {
@@ -192,7 +197,7 @@ h1 {
   background: rgba(255, 255, 255, 0.04);
 }
 
-/* Mobile profile strip (hidden on desktop) */
+/* Mobile profile strip */
 .profile-strip {
   display: none;
   align-items: center;
@@ -221,6 +226,12 @@ h1 {
   color: var(--muted);
   font-size: 13.5px;
   margin-top: 2px;
+}
+
+.profile-current {
+  color: rgba(233, 237, 242, 0.72);
+  font-size: 13.5px;
+  margin-top: 4px;
 }
 
 /* Panel */
@@ -287,7 +298,7 @@ h1 {
   justify-content: center;
 }
 
-/* Company logos (experience cards) */
+/* Company logos */
 .company-logo {
   width: 40px;
   height: 40px;
@@ -308,7 +319,7 @@ h1 {
     rgba(255, 255, 255, 0.035);
 }
 
-/* Tool logos (projects) */
+/* Tool logos */
 .logo {
   width: 34px;
   height: 34px;
@@ -320,7 +331,6 @@ h1 {
 /* Bullets */
 .bullets { margin: 12px 0 0; padding-left: 18px; }
 .bullets li { margin: 7px 0; color: var(--muted); }
-
 .bullets.compact { margin-top: 8px; }
 .bullets.compact li { margin: 6px 0; }
 
@@ -340,12 +350,22 @@ h1 {
 }
 
 .tile-title {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-size: 15px;
   font-weight: 900;
 }
 
-.tile p { margin: 0; color: var(--muted); }
+.tile-sub {
+  margin: 0 0 10px;
+  color: rgba(233, 237, 242, 0.70);
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+.tile-body {
+  margin: 0;
+  color: var(--muted);
+}
 
 /* Projects formatting */
 .project-body {
@@ -362,12 +382,19 @@ h1 {
   color: rgba(233, 237, 242, 0.78);
 }
 
+.impact {
+  margin: 8px 0 0;
+  color: rgba(233, 237, 242, 0.80);
+  line-height: 1.45;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 2px;
 }
+
 .tag {
   display: inline-flex;
   align-items: center;
@@ -473,10 +500,16 @@ input:focus, textarea:focus {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 12px;
-  align-items: center;
+  align-items: start;
 }
 
-.form-hint { margin: 0; color: var(--muted); }
+.form-notes {
+  display: grid;
+  gap: 6px;
+}
+
+.form-hint, .form-trust { margin: 0; }
+.form-trust { color: rgba(233, 237, 242, 0.65); font-size: 13.5px; }
 
 .honeypot { display: none; }
 
@@ -541,17 +574,25 @@ input:focus, textarea:focus {
 }
 
 .footer-inner {
-  display: flex;
+  display: grid;
   gap: 10px;
-  align-items: center;
+}
+
+.footer-nav a { color: rgba(233, 237, 242, 0.78); }
+.footer-nav a:hover { color: var(--text); text-decoration: none; }
+
+.footer-meta {
+  display: flex;
+  gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .sep { opacity: 0.75; }
 
 /* Subtle polish */
 .card, .tile, .panel, .avatar, .company-logo {
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .card:hover, .tile:hover, .panel:hover {
@@ -602,10 +643,7 @@ input:focus, textarea:focus {
 
 /* Mobile header: keep it intentional without weird wrapping */
 @media (max-width: 700px) {
-  .site-header {
-    height: auto;
-    padding: 10px 0;
-  }
+  .site-header { height: auto; padding: 10px 0; }
 
   .header-inner {
     flex-direction: column;
@@ -630,7 +668,6 @@ input:focus, textarea:focus {
   .profile-strip { display: flex; }
 
   .hero-actions .button { width: 100%; }
-
   .container { padding: 18px; }
 }
 
@@ -644,8 +681,4 @@ input:focus, textarea:focus {
   }
 
   #submit-btn { width: 100%; }
-}
-
-@media (max-width: 420px) {
-  h1 { font-size: 30px; }
 }
