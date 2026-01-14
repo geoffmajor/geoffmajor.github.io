@@ -228,6 +228,13 @@ h1 {
   margin-top: 2px;
 }
 
+/* Mobile profile strip: meta row with inline LinkedIn */
+.profile-meta-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .profile-current {
   color: rgba(233, 237, 242, 0.72);
   font-size: 13.5px;
@@ -450,39 +457,51 @@ h1 {
 
 button.button { color: var(--text); }
 
-/* LinkedIn icon link (no button chrome) */
+/* Social icon links (LinkedIn) */
 .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  /* gives it a reasonable click target without looking like a button */
   padding: 4px;
   border-radius: 10px;
-
   text-decoration: none;
-
   transition: transform 160ms ease, opacity 160ms ease;
 }
 
 .social-icon {
   height: 22px;
-  width: auto;          /* preserves aspect ratio */
+  width: auto;
   display: block;
   opacity: 0.9;
 }
 
 .social-link:hover {
-  transform: translateY(-1px); /* matches your button hover lift :contentReference[oaicite:3]{index=3} */
+  transform: translateY(-1px);
 }
 
 .social-link:hover .social-icon {
   opacity: 1;
 }
 
-.social-link:focus-visible {
-  outline: 2px solid rgba(93, 214, 255, 0.85);
-  outline-offset: 3px;
+/* Slightly larger, easier tap target when used inline */
+.social-link--inline {
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.social-link--inline .social-icon {
+  height: 18px;
+}
+
+.icon-button {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.icon-button .icon {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 /* Contact Form */

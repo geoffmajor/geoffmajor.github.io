@@ -12,6 +12,11 @@
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://geoffreymajor.com/" />
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="./assets/favicon-gm.png" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Geoffrey Major | Quality Assurance Engineer" />
@@ -47,12 +52,6 @@
         }
       }
     </script>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="48x48" />
-    <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="16x16" />
-    <link rel="apple-touch-icon" href="./assets/favicon-gm.png" sizes="180x180" />
 
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -94,7 +93,21 @@
             <img class="avatar-small" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
             <div class="profile-strip-text">
               <div class="profile-name">Geoffrey Major</div>
-              <div class="profile-meta">Reno, NV • Remote</div>
+
+              <div class="profile-meta-row">
+                <div class="profile-meta">Reno, NV • Remote</div>
+
+                <a
+                  class="social-link social-link--inline"
+                  href="https://linkedin.com/in/gcmajor"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Open LinkedIn profile in a new tab"
+                >
+                  <img class="social-icon" src="./assets/linkedin-logo.png" alt="" aria-hidden="true" />
+                </a>
+              </div>
+
               <div class="profile-current">Currently Quality Assurance Engineer at Worth AI</div>
             </div>
           </div>
@@ -118,19 +131,16 @@
             >
               View Resume
             </a>
+
+            <!-- Desktop-only: LinkedIn icon sits beside Resume button -->
             <a
-              class="social-link"
+              class="social-link desktop-only"
               href="https://linkedin.com/in/gcmajor"
               target="_blank"
               rel="noreferrer"
               aria-label="Open LinkedIn profile in a new tab"
             >
-              <img
-                class="social-icon"
-                src="./assets/linkedin-logo.png"
-                alt=""
-                aria-hidden="true"
-              />
+              <img class="social-icon" src="./assets/linkedin-logo.png" alt="" aria-hidden="true" />
             </a>
           </div>
 
@@ -185,7 +195,10 @@
             </div>
           </header>
           <ul class="bullets">
-            <li>Own release confidence across multiple product areas through risk-based testing and tight feedback loops with engineering and product.</li>
+            <li>
+              Own release confidence across multiple product areas through risk-based testing and tight feedback loops
+              with engineering and product.
+            </li>
             <li>Build and maintain Playwright automation for critical workflows and integrate checks into CI to reduce regressions.</li>
             <li>Validate complex onboarding and decisioning behavior across UI and APIs using Postman and data-level verification.</li>
             <li>Drive pragmatic QA improvements: regression coverage, test organization, and clearer defect reporting.</li>
@@ -327,9 +340,7 @@
 
             <div class="project-block">
               <div class="project-label">Outcome</div>
-              <p class="impact">
-                <strong>Impact:</strong> Enabled CI gating and reduced manual regression effort across releases.
-              </p>
+              <p class="impact"><strong>Impact:</strong> Enabled CI gating and reduced manual regression effort across releases.</p>
             </div>
 
             <div class="tags" aria-label="Project technologies">
@@ -364,9 +375,7 @@
 
             <div class="project-block">
               <div class="project-label">Outcome</div>
-              <p class="impact">
-                <strong>Impact:</strong> Increased confidence in releases and reduced late-cycle defects.
-              </p>
+              <p class="impact"><strong>Impact:</strong> Increased confidence in releases and reduced late-cycle defects.</p>
             </div>
 
             <div class="tags" aria-label="Project technologies">
