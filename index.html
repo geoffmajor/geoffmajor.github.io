@@ -34,6 +34,7 @@
     </header>
 
     <main id="main" class="container" role="main">
+      <!-- HERO -->
       <section id="top" class="hero">
         <div class="hero-copy">
           <p class="kicker">Quality Assurance Engineer</p>
@@ -70,17 +71,18 @@
         </aside>
       </section>
 
+      <!-- EXPERIENCE -->
       <section id="experience" class="section reveal">
         <div class="section-head">
           <h2>Experience</h2>
-          <p class="muted">A few highlights from roles where I owned testing, quality, and release readiness.</p>
+          <p class="muted">Highlights from roles where I owned testing, quality, and release readiness.</p>
         </div>
 
         <article class="card">
           <header class="card-head">
-            <div>
+            <div class="card-main">
               <h3>Quality Assurance Engineer</h3>
-              <p class="sub">Worth AI • Remote • Oct 2025 – Present</p>
+              <p class="card-meta">Worth AI • Remote • Oct 2025 – Present</p>
             </div>
           </header>
           <ul class="bullets">
@@ -93,9 +95,9 @@
 
         <article class="card">
           <header class="card-head">
-            <div>
+            <div class="card-main">
               <h3>QA Automation Engineer</h3>
-              <p class="sub">Castiron • Remote • Aug 2022 – Sep 2025</p>
+              <p class="card-meta">Castiron • Remote • Aug 2022 – Sep 2025</p>
             </div>
           </header>
           <ul class="bullets">
@@ -108,9 +110,9 @@
 
         <article class="card">
           <header class="card-head">
-            <div>
+            <div class="card-main">
               <h3>Quality Assurance Engineer</h3>
-              <p class="sub">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</p>
+              <p class="card-meta">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</p>
             </div>
           </header>
           <ul class="bullets">
@@ -122,9 +124,9 @@
 
         <article class="card">
           <header class="card-head">
-            <div>
+            <div class="card-main">
               <h3>Software QA Lead</h3>
-              <p class="sub">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
+              <p class="card-meta">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
             </div>
           </header>
           <ul class="bullets">
@@ -137,9 +139,9 @@
 
         <article class="card">
           <header class="card-head">
-            <div>
+            <div class="card-main">
               <h3>Software QA Analyst</h3>
-              <p class="sub">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</p>
+              <p class="card-meta">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</p>
             </div>
           </header>
           <ul class="bullets">
@@ -150,6 +152,7 @@
         </article>
       </section>
 
+      <!-- SKILLS -->
       <section id="skills" class="section reveal">
         <div class="section-head">
           <h2>Skills</h2>
@@ -176,53 +179,91 @@
         </div>
       </section>
 
+      <!-- PROJECTS -->
       <section id="projects" class="section reveal">
         <div class="section-head">
           <h2>Projects</h2>
-          <p class="muted">A couple of frameworks I implemented to improve coverage and release confidence.</p>
+          <p class="muted">Frameworks I implemented to improve coverage and release confidence.</p>
         </div>
 
-        <article class="card">
+        <article class="card project">
           <header class="card-head">
-            <div>
-              <h3>Playwright E2E Framework (Castiron)</h3>
-              <p class="sub">Automation foundation for customer-facing workflows</p>
+            <div class="card-main">
+              <h3>Playwright E2E Framework</h3>
+              <p class="card-meta">Castiron • End-to-end automation foundation for critical workflows</p>
+            </div>
+            <div class="card-side" aria-hidden="true">
+              <img class="logo" src="./assets/playwright-logo.png" alt="" />
             </div>
           </header>
-          <ul class="bullets">
-            <li>Implemented a Playwright-based test framework focused on reliable end-to-end coverage for critical flows.</li>
-            <li>Built maintainable patterns for page objects / helpers and reusable test data setup.</li>
-            <li>Integrated checks into GitHub Actions to provide fast feedback and reduce regressions during frequent deploys.</li>
-          </ul>
-          <div class="tags" aria-label="Project tags">
-            <span class="tag">Playwright</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">E2E Testing</span>
+
+          <div class="project-body">
+            <div class="project-block">
+              <div class="project-label">What I built</div>
+              <ul class="bullets compact">
+                <li>A maintainable Playwright framework for high-signal, end-to-end coverage.</li>
+                <li>Reusable helpers for auth, test data setup, and stable selectors to reduce flake.</li>
+                <li>CI integration with GitHub Actions for fast feedback during frequent deploys.</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <div class="project-label">Why it mattered</div>
+              <ul class="bullets compact">
+                <li>Reduced manual regression overhead and improved confidence in core flows.</li>
+                <li>Made failures more actionable with consistent structure and clearer reporting.</li>
+              </ul>
+            </div>
+
+            <div class="tags" aria-label="Project technologies">
+              <span class="tag">Playwright</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">E2E</span>
+            </div>
           </div>
         </article>
 
-        <article class="card">
+        <article class="card project">
           <header class="card-head">
-            <div>
-              <h3>Cypress Framework (Bottomline)</h3>
-              <p class="sub">Baseline automated coverage for a legacy payments platform</p>
+            <div class="card-main">
+              <h3>Cypress UI Testing Framework</h3>
+              <p class="card-meta">Bottomline • Baseline automation for a legacy payments platform</p>
+            </div>
+            <div class="card-side" aria-hidden="true">
+              <img class="logo" src="./assets/cypress-logo.png" alt="" />
             </div>
           </header>
-          <ul class="bullets">
-            <li>Introduced Cypress tests to establish baseline automation for high-priority workflows.</li>
-            <li>Created conventions for selectors, test structure, and readable assertions to keep tests stable over time.</li>
-            <li>Aligned automation coverage with risk areas to supplement manual validation and support release readiness.</li>
-          </ul>
-          <div class="tags" aria-label="Project tags">
-            <span class="tag">Cypress</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">UI Automation</span>
-            <span class="tag">Regression</span>
+
+          <div class="project-body">
+            <div class="project-block">
+              <div class="project-label">What I built</div>
+              <ul class="bullets compact">
+                <li>Introduced Cypress tests to cover high-priority workflows and reduce regressions.</li>
+                <li>Conventions for selectors, test structure, and readable assertions to keep tests stable.</li>
+                <li>Coverage aligned to risk areas to complement manual validation for releases.</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <div class="project-label">Why it mattered</div>
+              <ul class="bullets compact">
+                <li>Established a foundation that made automated regression practical on a legacy system.</li>
+                <li>Improved repeatability and reduced reliance on “tribal knowledge” testing.</li>
+              </ul>
+            </div>
+
+            <div class="tags" aria-label="Project technologies">
+              <span class="tag">Cypress</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">UI Automation</span>
+              <span class="tag">Regression</span>
+            </div>
           </div>
         </article>
       </section>
 
+      <!-- CONTACT -->
       <section id="contact" class="section reveal">
         <div class="section-head">
           <h2>Contact</h2>
@@ -285,7 +326,7 @@
       // Year
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Form: prevent double submit + show status
+      // Form: prevent double submit + show status (and spinner)
       const form = document.getElementById("contact-form");
       const statusEl = document.getElementById("form-status");
       const submitBtn = document.getElementById("submit-btn");
