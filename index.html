@@ -6,7 +6,7 @@
     <title>Geoffrey Major | Quality Assurance Engineer</title>
     <meta
       name="description"
-      content="Geoffrey Major. Quality Assurance Engineer focused on practical test coverage, automation, and release confidence."
+      content="Geoffrey Major. Quality Assurance Engineer focused on pragmatic testing, automation, and release confidence."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -14,18 +14,18 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="header">
+    <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="/">
-          <span class="brand-mark" aria-hidden="true"></span>
+        <a class="brand" href="#top" aria-label="Go to top">
+          <span class="brand-dot" aria-hidden="true"></span>
           <span class="brand-text">Geoffrey Major</span>
         </a>
 
-        <nav class="nav" aria-label="Primary">
+        <nav class="nav" aria-label="Primary navigation">
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
-          <a class="pill" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">
+          <a class="nav-cta" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">
             Resume
           </a>
         </nav>
@@ -33,18 +33,20 @@
     </header>
 
     <main id="main" class="container" role="main">
-      <section class="hero">
+      <section id="top" class="hero">
         <div class="hero-copy">
           <p class="kicker">Quality Assurance Engineer</p>
-          <h1>Release confidence, built through practical testing and automation.</h1>
+          <h1>Release confidence through pragmatic testing and automation.</h1>
           <p class="lead">
             QA engineer with 8 years of experience across manual testing, exploratory testing, and UI/API automation for
-            web, mobile, and desktop applications. Comfortable working end-to-end with engineering and product to reduce
-            regressions and clarify requirements.
+            web, mobile, and desktop applications. I work closely with engineering and product to reduce regressions,
+            clarify requirements, and keep releases moving.
           </p>
 
           <div class="hero-actions">
-            <a class="button" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            <a class="button primary" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">
+              View Resume
+            </a>
             <a class="button secondary" href="https://linkedin.com/in/gcmajor" target="_blank" rel="noreferrer">
               LinkedIn
             </a>
@@ -53,10 +55,10 @@
           <p class="meta">Reno, NV • Remote</p>
         </div>
 
-        <div class="hero-card">
+        <aside class="hero-aside">
           <img class="avatar" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
           <div class="panel">
-            <h2 class="panel-title">What I focus on</h2>
+            <h2 class="panel-title">Focus Areas</h2>
             <ul class="bullets">
               <li>Automation that supports fast releases (Playwright, Cypress)</li>
               <li>Exploratory and risk-based testing</li>
@@ -64,19 +66,20 @@
               <li>CI feedback loops (GitHub Actions)</li>
             </ul>
           </div>
-        </div>
+        </aside>
       </section>
 
       <section id="experience" class="section">
         <div class="section-head">
           <h2>Experience</h2>
+          <p class="muted">A few highlights from roles where I owned testing, quality, and release readiness.</p>
         </div>
 
-        <article class="role">
-          <header class="role-head">
+        <article class="card">
+          <header class="card-head">
             <div>
               <h3>Quality Assurance Engineer</h3>
-              <p class="role-sub">Worth AI • Remote • Oct 2025 – Present</p>
+              <p class="sub">Worth AI • Remote • Oct 2025 – Present</p>
             </div>
           </header>
           <ul class="bullets">
@@ -87,11 +90,11 @@
           </ul>
         </article>
 
-        <article class="role">
-          <header class="role-head">
+        <article class="card">
+          <header class="card-head">
             <div>
               <h3>QA Automation Engineer</h3>
-              <p class="role-sub">Castiron • Remote • Aug 2022 – Sep 2025</p>
+              <p class="sub">Castiron • Remote • Aug 2022 – Sep 2025</p>
             </div>
           </header>
           <ul class="bullets">
@@ -102,11 +105,11 @@
           </ul>
         </article>
 
-        <article class="role">
-          <header class="role-head">
+        <article class="card">
+          <header class="card-head">
             <div>
               <h3>Quality Assurance Engineer</h3>
-              <p class="role-sub">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</p>
+              <p class="sub">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</p>
             </div>
           </header>
           <ul class="bullets">
@@ -116,11 +119,11 @@
           </ul>
         </article>
 
-        <article class="role">
-          <header class="role-head">
+        <article class="card">
+          <header class="card-head">
             <div>
               <h3>Software QA Lead</h3>
-              <p class="role-sub">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
+              <p class="sub">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
             </div>
           </header>
           <ul class="bullets">
@@ -131,11 +134,11 @@
           </ul>
         </article>
 
-        <article class="role">
-          <header class="role-head">
+        <article class="card">
+          <header class="card-head">
             <div>
               <h3>Software QA Analyst</h3>
-              <p class="role-sub">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</p>
+              <p class="sub">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</p>
             </div>
           </header>
           <ul class="bullets">
@@ -149,6 +152,7 @@
       <section id="skills" class="section">
         <div class="section-head">
           <h2>Skills</h2>
+          <p class="muted">Tools and practices I reach for in day-to-day QA work.</p>
         </div>
 
         <div class="grid">
@@ -156,17 +160,14 @@
             <h3 class="tile-title">Automation</h3>
             <p>Playwright, Cypress, Detox, Selenium, TypeScript, Git, GitHub</p>
           </div>
-
           <div class="tile">
             <h3 class="tile-title">Testing</h3>
             <p>Exploratory testing, regression, risk-based testing, cross-platform testing, test planning</p>
           </div>
-
           <div class="tile">
-            <h3 class="tile-title">API and data</h3>
+            <h3 class="tile-title">API and Data</h3>
             <p>Postman, REST API testing, SQL validation, JMeter (basic)</p>
           </div>
-
           <div class="tile">
             <h3 class="tile-title">Process</h3>
             <p>Defect triage, release support, Agile/Scrum, CI/CD integration (GitHub Actions)</p>
@@ -180,8 +181,14 @@
           <p class="muted">Send a message and I will get back to you.</p>
         </div>
 
-        <div class="contact-wrap">
-          <form class="form" id="contact-form" action="https://formspree.io/f/xdaakezg" method="POST" novalidate>
+        <div class="contact">
+          <form
+            class="form"
+            id="contact-form"
+            action="https://formspree.io/f/xdaakezg"
+            method="POST"
+            novalidate
+          >
             <div class="form-grid">
               <div class="field">
                 <label for="name">Name</label>
@@ -198,27 +205,22 @@
                 <textarea id="message" name="message" rows="6" required></textarea>
               </div>
 
-              <!-- Honeypot -->
-              <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" />
+              <!-- Honeypot (bots will fill this, humans won't) -->
+              <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
 
-              <div class="actions field-full">
-                <button class="button" id="submit-btn" type="submit">
-                  <span class="btn-text">Send message</span>
-                  <span class="btn-spinner" aria-hidden="true"></span>
+              <div class="field field-full actions">
+                <button class="button primary" id="submit-btn" type="submit">
+                  <span class="btn-text">Send Message</span>
+                  <span class="spinner" aria-hidden="true"></span>
                 </button>
 
-                <a class="button secondary" href="https://linkedin.com/in/gcmajor" target="_blank" rel="noreferrer">
-                  LinkedIn
-                </a>
-
                 <p class="form-hint muted">
-                  Prefer email? You can reach me at
-                  <a href="mailto:geoffreymajor@gmail.com">geoffreymajor@gmail.com</a>.
+                  Or email me at <a href="mailto:geoffreymajor@gmail.com">geoffreymajor@gmail.com</a>.
                 </p>
               </div>
-            </div>
 
-            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+              <p class="status" id="form-status" role="status" aria-live="polite"></p>
+            </div>
           </form>
         </div>
       </section>
@@ -227,46 +229,45 @@
     <footer class="footer">
       <div class="container footer-inner">
         <span>© <span id="year"></span> Geoffrey Major</span>
-        <span class="sep">•</span>
+        <span class="sep" aria-hidden="true">•</span>
         <span>Built on GitHub Pages</span>
       </div>
     </footer>
 
     <script>
-      // Footer year
+      // Year
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Contact form: prevent double submit + show status
+      // Form: prevent double submit + show status
       const form = document.getElementById("contact-form");
       const statusEl = document.getElementById("form-status");
       const submitBtn = document.getElementById("submit-btn");
       const btnText = submitBtn.querySelector(".btn-text");
 
-      let isSubmitting = false;
+      let submitting = false;
 
-      function setStatus(message, tone) {
-        statusEl.textContent = message;
+      function setStatus(message, kind) {
+        statusEl.textContent = message || "";
         statusEl.classList.remove("ok", "error");
-        if (tone) statusEl.classList.add(tone);
+        if (kind) statusEl.classList.add(kind);
       }
 
       function setSubmitting(on) {
-        isSubmitting = on;
+        submitting = on;
         submitBtn.disabled = on;
         submitBtn.classList.toggle("loading", on);
-        btnText.textContent = on ? "Sending…" : "Send message";
+        btnText.textContent = on ? "Sending…" : "Send Message";
       }
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        if (isSubmitting) return;
+        if (submitting) return;
 
-        // Simple client validation (rely on required + type=email)
-        const name = form.querySelector("#name");
-        const email = form.querySelector("#email");
-        const message = form.querySelector("#message");
+        const name = form.querySelector("#name").value.trim();
+        const email = form.querySelector("#email").value.trim();
+        const message = form.querySelector("#message").value.trim();
 
-        if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+        if (!name || !email || !message) {
           setStatus("Please fill out name, email, and message.", "error");
           return;
         }
