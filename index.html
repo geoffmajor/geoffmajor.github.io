@@ -3,18 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Geoffrey Major | Quality Assurance Engineer</title>
     <meta
       name="description"
-      content="Geoffrey Major. Quality Assurance Engineer focused on pragmatic testing, automation, and release confidence."
+      content="Geoffrey Major is a Quality Assurance Engineer focused on pragmatic testing, automation, and release confidence across web, mobile, and desktop products."
     />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://geoffreymajor.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Geoffrey Major | Quality Assurance Engineer" />
+    <meta
+      property="og:description"
+      content="QA engineer with 8 years of experience across manual testing, exploratory testing, and UI/API automation."
+    />
+    <meta property="og:url" content="https://geoffreymajor.com/" />
+    <!-- If you add a social image later, put it in /assets and set og:image -->
+    <!-- <meta property="og:image" content="https://geoffreymajor.com/assets/og-image.png" /> -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Geoffrey Major | Quality Assurance Engineer" />
+    <meta
+      name="twitter:description"
+      content="QA engineer focused on pragmatic testing, automation, and release confidence."
+    />
+
+    <!-- JSON-LD: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Geoffrey Major",
+        "jobTitle": "Quality Assurance Engineer",
+        "url": "https://geoffreymajor.com/",
+        "sameAs": ["https://linkedin.com/in/gcmajor"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Reno",
+          "addressRegion": "NV",
+          "addressCountry": "US"
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
+    <header class="site-header" id="site-header">
       <div class="container header-inner">
         <a class="brand" href="#top" aria-label="Go to top">
           <span class="brand-dot" aria-hidden="true"></span>
@@ -26,7 +67,13 @@
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
-          <a class="nav-cta" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">
+          <a
+            class="nav-cta"
+            href="./assets/Major_Geoffrey_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open resume PDF in a new tab"
+          >
             Resume
           </a>
         </nav>
@@ -37,12 +84,13 @@
       <!-- HERO -->
       <section id="top" class="hero">
         <div class="hero-copy">
-          <!-- Mobile-only profile strip (keeps avatar intentional on small screens) -->
+          <!-- Mobile-only profile strip -->
           <div class="profile-strip" aria-label="Profile">
             <img class="avatar-small" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
             <div class="profile-strip-text">
               <div class="profile-name">Geoffrey Major</div>
               <div class="profile-meta">Reno, NV • Remote</div>
+              <div class="profile-current">Currently Quality Assurance Engineer at Worth AI</div>
             </div>
           </div>
 
@@ -51,22 +99,35 @@
 
           <p class="lead">
             QA engineer with 8 years of experience across manual testing, exploratory testing, and UI/API automation for
-            web, mobile, and desktop applications. I work closely with engineering and product to reduce regressions,
+            web, mobile, and desktop applications. I focus on pragmatic testing strategies that reduce regressions,
             clarify requirements, and keep releases moving.
           </p>
 
           <div class="hero-actions">
-            <a class="button primary" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">
+            <a
+              class="button primary"
+              href="./assets/Major_Geoffrey_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View resume PDF in a new tab"
+            >
               View Resume
             </a>
-            <a class="button secondary" href="https://linkedin.com/in/gcmajor" target="_blank" rel="noreferrer">
+            <a
+              class="button secondary"
+              href="https://linkedin.com/in/gcmajor"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open LinkedIn profile in a new tab"
+            >
               LinkedIn
             </a>
           </div>
 
           <p class="meta desktop-only">Reno, NV • Remote</p>
+          <p class="meta desktop-only">Currently Quality Assurance Engineer at Worth AI</p>
 
-          <!-- On mobile, show focus areas after the copy -->
+          <!-- Mobile: show focus areas beneath hero copy -->
           <div class="panel mobile-only">
             <h2 class="panel-title">Focus Areas</h2>
             <ul class="bullets">
@@ -78,7 +139,7 @@
           </div>
         </div>
 
-        <!-- Desktop-only aside (keeps layout clean and avoids “avatar in the middle” on mobile) -->
+        <!-- Desktop-only aside -->
         <aside class="hero-aside desktop-only">
           <div class="avatar-card">
             <img class="avatar" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
@@ -202,19 +263,26 @@
         <div class="grid">
           <div class="tile">
             <h3 class="tile-title">Automation</h3>
-            <p>Playwright, Cypress, Detox, Selenium, TypeScript, Git, GitHub</p>
+            <p class="tile-sub">Tools I use for reliable, maintainable test automation.</p>
+            <p class="tile-body">Playwright, Cypress, Detox, Selenium, TypeScript, Git, GitHub</p>
           </div>
+
           <div class="tile">
             <h3 class="tile-title">Testing</h3>
-            <p>Exploratory testing, regression testing, risk-based testing, cross-platform testing, test planning</p>
+            <p class="tile-sub">How I approach coverage, risk, and validation.</p>
+            <p class="tile-body">Exploratory testing, regression testing, risk-based testing, cross-platform testing, test planning</p>
           </div>
+
           <div class="tile">
             <h3 class="tile-title">API and Data</h3>
-            <p>Postman, REST API testing, SQL validation, JMeter</p>
+            <p class="tile-sub">Validating behavior beyond the UI.</p>
+            <p class="tile-body">Postman, REST API testing, SQL validation, JMeter</p>
           </div>
+
           <div class="tile">
             <h3 class="tile-title">Process</h3>
-            <p>Defect triage, release support, Agile/Scrum, CI/CD integration (GitHub Actions)</p>
+            <p class="tile-sub">Keeping releases moving and feedback fast.</p>
+            <p class="tile-body">Defect triage, release support, Agile/Scrum, CI/CD integration (GitHub Actions)</p>
           </div>
         </div>
       </section>
@@ -241,18 +309,17 @@
             <div class="project-block">
               <div class="project-label">What I built</div>
               <ul class="bullets compact">
-                <li>A maintainable Playwright framework for high-signal, end-to-end coverage.</li>
-                <li>Reusable helpers for auth, test data setup, and stable selectors to reduce flake.</li>
-                <li>CI integration with GitHub Actions for fast feedback during frequent deploys.</li>
+                <li>Designed and implemented a Playwright-based E2E framework covering high-risk user journeys.</li>
+                <li>Integrated tests into CI to catch regressions before release.</li>
+                <li>Established patterns for maintainable, scalable test development.</li>
               </ul>
             </div>
 
             <div class="project-block">
-              <div class="project-label">Why it mattered</div>
-              <ul class="bullets compact">
-                <li>Reduced manual regression overhead and improved confidence in core flows.</li>
-                <li>Made failures more actionable with consistent structure and clearer reporting.</li>
-              </ul>
+              <div class="project-label">Outcome</div>
+              <p class="impact">
+                <strong>Impact:</strong> Enabled CI gating and reduced manual regression effort across releases.
+              </p>
             </div>
 
             <div class="tags" aria-label="Project technologies">
@@ -279,18 +346,17 @@
             <div class="project-block">
               <div class="project-label">What I built</div>
               <ul class="bullets compact">
-                <li>Introduced Cypress tests to cover high-priority workflows and reduce regressions.</li>
-                <li>Conventions for selectors, test structure, and readable assertions to keep tests stable.</li>
-                <li>Coverage aligned to risk areas to complement manual validation for releases.</li>
+                <li>Introduced Cypress to establish baseline E2E coverage for critical workflows.</li>
+                <li>Partnered with engineering to define test strategy and ownership.</li>
+                <li>Improved visibility into UI and API failures during releases.</li>
               </ul>
             </div>
 
             <div class="project-block">
-              <div class="project-label">Why it mattered</div>
-              <ul class="bullets compact">
-                <li>Established a foundation that made automated regression practical on a legacy system.</li>
-                <li>Improved repeatability and reduced reliance on “tribal knowledge” testing.</li>
-              </ul>
+              <div class="project-label">Outcome</div>
+              <p class="impact">
+                <strong>Impact:</strong> Increased confidence in releases and reduced late-cycle defects.
+              </p>
             </div>
 
             <div class="tags" aria-label="Project technologies">
@@ -317,6 +383,7 @@
             action="https://formspree.io/f/xdaakezg"
             method="POST"
             novalidate
+            aria-label="Contact form"
           >
             <div class="form-grid">
               <div class="field">
@@ -337,14 +404,17 @@
               <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
 
               <div class="field field-full actions">
-                <button class="button primary" id="submit-btn" type="submit">
+                <button class="button primary" id="submit-btn" type="submit" aria-label="Send message">
                   <span class="btn-text">Send Message</span>
                   <span class="spinner" aria-hidden="true"></span>
                 </button>
 
-                <p class="form-hint muted">
-                  Or email me at <a href="mailto:geoffreymajor@gmail.com">geoffreymajor@gmail.com</a>.
-                </p>
+                <div class="form-notes">
+                  <p class="form-hint muted">
+                    Or email me at <a href="mailto:geoffreymajor@gmail.com">geoffreymajor@gmail.com</a>.
+                  </p>
+                  <p class="form-trust muted">No spam. No mailing lists. Messages are sent directly to me.</p>
+                </div>
               </div>
 
               <p class="status" id="form-status" role="status" aria-live="polite"></p>
@@ -356,9 +426,21 @@
 
     <footer class="footer">
       <div class="container footer-inner">
-        <span>© <span id="year"></span> Geoffrey Major</span>
-        <span class="sep" aria-hidden="true">•</span>
-        <span>Built on GitHub Pages</span>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#experience">Experience</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="#skills">Skills</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="#projects">Projects</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="footer-meta">
+          <span>© <span id="year"></span> Geoffrey Major</span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span>Built on GitHub Pages</span>
+        </div>
       </div>
     </footer>
 
@@ -416,7 +498,7 @@
           const response = await fetch(form.action, {
             method: "POST",
             body: data,
-            headers: { Accept: "application/json" },
+            headers: { Accept: "application/json" }
           });
 
           if (response.ok) {
