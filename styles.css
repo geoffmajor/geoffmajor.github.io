@@ -16,6 +16,18 @@
   --header-h: 68px;
 }
 
+/* Anchor offset for sticky header (prevents section titles hiding behind nav) */
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 18px);
+}
+
+/* On mobile, header becomes taller than --header-h, so add a bigger offset */
+@media (max-width: 700px) {
+  section[id] {
+    scroll-margin-top: 120px;
+  }
+}
+
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 
