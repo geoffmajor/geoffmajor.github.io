@@ -24,6 +24,7 @@
         <nav class="nav" aria-label="Primary navigation">
           <a href="#experience">Experience</a>
           <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
           <a class="nav-cta" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">
             Resume
@@ -162,17 +163,64 @@
           </div>
           <div class="tile">
             <h3 class="tile-title">Testing</h3>
-            <p>Exploratory testing, regression, risk-based testing, cross-platform testing, test planning</p>
+            <p>Exploratory testing, regression testing, risk-based testing, cross-platform testing, test planning</p>
           </div>
           <div class="tile">
             <h3 class="tile-title">API and Data</h3>
-            <p>Postman, REST API testing, SQL validation, JMeter (basic)</p>
+            <p>Postman, REST API testing, SQL validation, JMeter</p>
           </div>
           <div class="tile">
             <h3 class="tile-title">Process</h3>
             <p>Defect triage, release support, Agile/Scrum, CI/CD integration (GitHub Actions)</p>
           </div>
         </div>
+      </section>
+
+      <section id="projects" class="section reveal">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p class="muted">A couple of frameworks I implemented to improve coverage and release confidence.</p>
+        </div>
+
+        <article class="card">
+          <header class="card-head">
+            <div>
+              <h3>Playwright E2E Framework (Castiron)</h3>
+              <p class="sub">Automation foundation for customer-facing workflows</p>
+            </div>
+          </header>
+          <ul class="bullets">
+            <li>Implemented a Playwright-based test framework focused on reliable end-to-end coverage for critical flows.</li>
+            <li>Built maintainable patterns for page objects / helpers and reusable test data setup.</li>
+            <li>Integrated checks into GitHub Actions to provide fast feedback and reduce regressions during frequent deploys.</li>
+          </ul>
+          <div class="tags" aria-label="Project tags">
+            <span class="tag">Playwright</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">E2E Testing</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <header class="card-head">
+            <div>
+              <h3>Cypress Framework (Bottomline)</h3>
+              <p class="sub">Baseline automated coverage for a legacy payments platform</p>
+            </div>
+          </header>
+          <ul class="bullets">
+            <li>Introduced Cypress tests to establish baseline automation for high-priority workflows.</li>
+            <li>Created conventions for selectors, test structure, and readable assertions to keep tests stable over time.</li>
+            <li>Aligned automation coverage with risk areas to supplement manual validation and support release readiness.</li>
+          </ul>
+          <div class="tags" aria-label="Project tags">
+            <span class="tag">Cypress</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">UI Automation</span>
+            <span class="tag">Regression</span>
+          </div>
+        </article>
       </section>
 
       <section id="contact" class="section reveal">
@@ -205,7 +253,6 @@
                 <textarea id="message" name="message" rows="6" required></textarea>
               </div>
 
-              <!-- Honeypot -->
               <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
 
               <div class="field field-full actions">
