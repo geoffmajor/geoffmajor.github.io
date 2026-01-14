@@ -14,7 +14,7 @@
   --header-h: 68px;
 }
 
-/* Base */
+/* ---------- Base ---------- */
 * { box-sizing: border-box; }
 
 html, body {
@@ -36,6 +36,7 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
     "Apple Color Emoji", "Segoe UI Emoji";
   line-height: 1.55;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -54,7 +55,7 @@ a:hover { text-decoration: underline; }
 
 .muted { color: var(--muted); }
 
-/* Skip link */
+/* ---------- Accessibility ---------- */
 .skip-link {
   position: absolute;
   left: -999px;
@@ -67,7 +68,7 @@ a:hover { text-decoration: underline; }
 }
 .skip-link:focus { left: 12px; }
 
-/* Header */
+/* ---------- Header ---------- */
 .site-header {
   position: sticky;
   top: 0;
@@ -81,11 +82,11 @@ a:hover { text-decoration: underline; }
 }
 
 .header-inner {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  width: 100%;
 }
 
 .brand {
@@ -125,13 +126,13 @@ a:hover { text-decoration: underline; }
   border-radius: 999px;
   border: 1px solid rgba(93, 214, 255, 0.35);
   background: rgba(93, 214, 255, 0.12);
-  font-weight: 700;
+  font-weight: 750;
 }
 .nav-cta:hover {
   border-color: rgba(93, 214, 255, 0.65);
 }
 
-/* Hero */
+/* ---------- Hero ---------- */
 .hero {
   display: grid;
   grid-template-columns: 1.25fr 0.75fr;
@@ -202,7 +203,7 @@ h1 {
   font-weight: 850;
 }
 
-/* Sections */
+/* ---------- Sections ---------- */
 .section {
   margin-top: 48px;
 }
@@ -217,7 +218,7 @@ h1 {
   margin: 0;
 }
 
-/* Cards */
+/* ---------- Cards ---------- */
 .card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -245,7 +246,7 @@ h1 {
   font-size: 14px;
 }
 
-/* Bullets */
+/* ---------- Bullets ---------- */
 .bullets {
   margin: 12px 0 0;
   padding-left: 18px;
@@ -256,7 +257,7 @@ h1 {
   color: var(--muted);
 }
 
-/* Skill tiles */
+/* ---------- Skills ---------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -282,12 +283,11 @@ h1 {
   color: var(--muted);
 }
 
-/* Buttons */
+/* ---------- Buttons ---------- */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   padding: 10px 14px;
   border-radius: 999px;
   font-weight: 750;
@@ -323,7 +323,12 @@ h1 {
   color: var(--text);
 }
 
-/* Contact form */
+/* Force button element text rendering consistency */
+button.button {
+  color: var(--text);
+}
+
+/* ---------- Contact Form ---------- */
 .contact {
   margin-top: 12px;
 }
@@ -381,6 +386,7 @@ input:focus, textarea:focus {
   border-color: rgba(93, 214, 255, 0.65);
 }
 
+/* Actions row: button + hint */
 .actions {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -412,8 +418,27 @@ input:focus, textarea:focus {
   color: #ffb4b4;
 }
 
-/* Spinner */
-.button.loading .spinner {
+/* Submit button: keep text centered even with spinner */
+#submit-btn.button.primary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  justify-items: center;
+}
+
+#submit-btn .btn-text {
+  justify-self: center;
+  text-align: center;
+}
+
+#submit-btn .spinner {
+  justify-self: end;
+  margin-left: 10px;
+  opacity: 0;
+}
+
+#submit-btn.loading .spinner {
+  opacity: 1;
   width: 14px;
   height: 14px;
   border-radius: 999px;
@@ -426,7 +451,7 @@ input:focus, textarea:focus {
   to { transform: rotate(360deg); }
 }
 
-/* Footer */
+/* ---------- Footer ---------- */
 .footer {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 56px;
@@ -443,7 +468,7 @@ input:focus, textarea:focus {
 
 .sep { opacity: 0.75; }
 
-/* Responsive */
+/* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
   .hero-aside { justify-items: start; }
@@ -452,8 +477,12 @@ input:focus, textarea:focus {
   .grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 620px) {
-  .container { padding: 18px; }
+/* Mobile header fix: avoid overflow, allow horizontal scroll */
+@media (max-width: 700px) {
+  .site-header {
+    height: auto;
+    padding: 10px 0;
+  }
 
   .header-inner {
     flex-direction: column;
@@ -461,7 +490,25 @@ input:focus, textarea:focus {
     gap: 10px;
   }
 
-  .nav { width: 100%; }
+  .nav {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+
+  .nav::-webkit-scrollbar {
+    height: 0px;
+  }
+}
+
+@media (max-width: 620px) {
+  .container { padding: 18px; }
 
   .hero-actions .button {
     width: 100%;
