@@ -6,102 +6,109 @@
     <title>Geoffrey Major | Quality Assurance Engineer</title>
     <meta
       name="description"
-      content="Geoffrey Major. QA Automation Engineer focused on practical testing, UI/API automation, and release confidence."
+      content="Geoffrey Major. Quality Assurance Engineer focused on practical test coverage, automation, and release confidence."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
   <body>
-    <header class="container header">
-      <a class="brand" href="/">
-        <span class="brand-dot"></span>
-        <span>Geoffrey Major</span>
-      </a>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-      <nav class="nav">
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-        <a class="button small" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-      </nav>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Geoffrey Major</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+          <a class="pill" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">
+            Resume
+          </a>
+        </nav>
+      </div>
     </header>
 
-    <main class="container">
+    <main id="main" class="container" role="main">
       <section class="hero">
-        <div class="hero-left">
-          <div class="kicker">Quality Assurance Engineer</div>
-          <h1>
-            I build practical test coverage that improves release confidence across UI, API, and CI.
-          </h1>
+        <div class="hero-copy">
+          <p class="kicker">Quality Assurance Engineer</p>
+          <h1>Release confidence, built through practical testing and automation.</h1>
           <p class="lead">
-            QA engineer with 8 years of experience in manual testing, exploratory testing, and UI/API automation
-            for web, mobile, and desktop applications. Skilled in Playwright, Cypress, REST API testing, and CI/CD workflows.
+            QA engineer with 8 years of experience across manual testing, exploratory testing, and UI/API automation for
+            web, mobile, and desktop applications. Comfortable working end-to-end with engineering and product to reduce
+            regressions and clarify requirements.
           </p>
 
-          <div class="cta">
+          <div class="hero-actions">
             <a class="button" href="./assets/Major_Geoffrey_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-            <a class="button secondary" href="https://linkedin.com/in/gcmajor" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="button secondary" href="https://linkedin.com/in/gcmajor" target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
           </div>
 
-          <div class="meta">
-            <span>Reno, NV</span>
-          </div>
+          <p class="meta">Reno, NV • Remote</p>
         </div>
 
-        <div class="hero-right">
+        <div class="hero-card">
           <img class="avatar" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" />
-          <div class="card">
-            <div class="card-title">Focus areas</div>
+          <div class="panel">
+            <h2 class="panel-title">What I focus on</h2>
             <ul class="bullets">
-              <li>Playwright + Cypress automation</li>
+              <li>Automation that supports fast releases (Playwright, Cypress)</li>
               <li>Exploratory and risk-based testing</li>
-              <li>API validation (Postman, SQL checks)</li>
-              <li>CI integration (GitHub Actions)</li>
+              <li>API validation (Postman) and data checks (SQL)</li>
+              <li>CI feedback loops (GitHub Actions)</li>
             </ul>
           </div>
         </div>
       </section>
 
       <section id="experience" class="section">
-        <h2>Experience</h2>
+        <div class="section-head">
+          <h2>Experience</h2>
+        </div>
 
         <article class="role">
-          <div class="role-top">
+          <header class="role-head">
             <div>
               <h3>Quality Assurance Engineer</h3>
-              <div class="sub">Worth AI • Remote • Sep 2025 – Present</div>
+              <p class="role-sub">Worth AI • Remote • Oct 2025 – Present</p>
             </div>
-          </div>
+          </header>
           <ul class="bullets">
             <li>Own release confidence across multiple product areas through risk-based testing and tight feedback loops with engineering and product.</li>
-            <li>Build and maintain automation for critical workflows, and integrate checks into CI to reduce regressions.</li>
+            <li>Build and maintain Playwright automation for critical workflows and integrate checks into CI to reduce regressions.</li>
             <li>Validate complex onboarding and decisioning behavior across UI and APIs using Postman and data-level verification.</li>
-            <li>Drive practical QA process improvements: regression coverage, test case organization, and clearer defect reporting.</li>
+            <li>Drive pragmatic QA improvements: regression coverage, test organization, and clearer defect reporting.</li>
           </ul>
         </article>
 
         <article class="role">
-          <div class="role-top">
+          <header class="role-head">
             <div>
               <h3>QA Automation Engineer</h3>
-              <div class="sub">Castiron • Remote • Aug 2022 – Sep 2025</div>
+              <p class="role-sub">Castiron • Remote • Aug 2022 – Sep 2025</p>
             </div>
-          </div>
+          </header>
           <ul class="bullets">
-            <li>Developed and maintained automated UI and API test coverage using Playwright for key workflows in three customer-facing web apps.</li>
-            <li>Integrated automated tests into GitHub Actions to support frequent deployments and reduce manual effort.</li>
-            <li>Wrote and executed manual test plans for high-risk features requiring exploratory coverage.</li>
-            <li>Partnered with engineers and designers to clarify edge cases and reduce ambiguity.</li>
+            <li>Developed and maintained automated UI and API test coverage using Playwright for key workflows across customer-facing web applications.</li>
+            <li>Integrated automated checks into GitHub Actions to support frequent deployments and reduce manual effort.</li>
+            <li>Executed exploratory and regression testing for high-risk features requiring broader coverage.</li>
+            <li>Partnered with engineering and design to clarify edge cases and reduce ambiguity in requirements.</li>
           </ul>
         </article>
 
         <article class="role">
-          <div class="role-top">
+          <header class="role-head">
             <div>
               <h3>Quality Assurance Engineer</h3>
-              <div class="sub">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</div>
+              <p class="role-sub">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</p>
             </div>
-          </div>
+          </header>
           <ul class="bullets">
             <li>Built Cypress tests to establish baseline coverage for high-priority workflows in a legacy payments platform.</li>
             <li>Defined coverage and ran manual tests validating UI behavior and backend data through API calls.</li>
@@ -110,12 +117,12 @@
         </article>
 
         <article class="role">
-          <div class="role-top">
+          <header class="role-head">
             <div>
               <h3>Software QA Lead</h3>
-              <div class="sub">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</div>
+              <p class="role-sub">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
             </div>
-          </div>
+          </header>
           <ul class="bullets">
             <li>Managed QA across web, desktop, and mobile platforms, leading a team of 10 through weekly release cycles.</li>
             <li>Migrated 500+ test cases from spreadsheets to TestRail and standardized test structure.</li>
@@ -125,12 +132,12 @@
         </article>
 
         <article class="role">
-          <div class="role-top">
+          <header class="role-head">
             <div>
               <h3>Software QA Analyst</h3>
-              <div class="sub">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</div>
+              <p class="role-sub">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</p>
             </div>
-          </div>
+          </header>
           <ul class="bullets">
             <li>Created and executed manual test cases across iOS, Android, Windows, Mac, and web.</li>
             <li>Validated features against specs and surfaced issues early through exploratory testing.</li>
@@ -140,104 +147,153 @@
       </section>
 
       <section id="skills" class="section">
-        <h2>Skills</h2>
+        <div class="section-head">
+          <h2>Skills</h2>
+        </div>
 
         <div class="grid">
           <div class="tile">
-            <div class="tile-title">Automation</div>
+            <h3 class="tile-title">Automation</h3>
             <p>Playwright, Cypress, Detox, Selenium, TypeScript, Git, GitHub</p>
           </div>
+
           <div class="tile">
-            <div class="tile-title">Testing</div>
+            <h3 class="tile-title">Testing</h3>
             <p>Exploratory testing, regression, risk-based testing, cross-platform testing, test planning</p>
           </div>
+
           <div class="tile">
-            <div class="tile-title">API and data</div>
-            <p>Postman, REST API testing, SQL validation, JMeter</p>
+            <h3 class="tile-title">API and data</h3>
+            <p>Postman, REST API testing, SQL validation, JMeter (basic)</p>
           </div>
+
           <div class="tile">
-            <div class="tile-title">Process</div>
+            <h3 class="tile-title">Process</h3>
             <p>Defect triage, release support, Agile/Scrum, CI/CD integration (GitHub Actions)</p>
           </div>
         </div>
       </section>
 
       <section id="contact" class="section">
-        <h2>Contact</h2>
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p class="muted">Send a message and I will get back to you.</p>
+        </div>
 
-        <form class="form" action="https://formspree.io/f/xdaakezg" method="POST">
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" autocomplete="name" required />
-          </label>
+        <div class="contact-wrap">
+          <form class="form" id="contact-form" action="https://formspree.io/f/xdaakezg" method="POST" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
 
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" autocomplete="email" required />
-          </label>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
 
-          <label>
-            <span>Message</span>
-            <textarea name="message" rows="6" required></textarea>
-          </label>
+              <div class="field field-full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+              </div>
 
-          <!-- Honeypot (spam protection, invisible to users) -->
-          <input type="text" name="_gotcha" style="display:none" />
+              <!-- Honeypot -->
+              <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" />
 
-          <div class="form-actions">
-            <button class="button" type="submit">Send message</button>
-            <a 
-              class="button secondary" 
-              href="https://linkedin.com/in/gcmajor" 
-              target="_blank" 
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </form>
-        
-        <p class="form-success" hidden>
-          Thanks for reaching out. I will get back to you shortly.
-        </p>
+              <div class="actions field-full">
+                <button class="button" id="submit-btn" type="submit">
+                  <span class="btn-text">Send message</span>
+                  <span class="btn-spinner" aria-hidden="true"></span>
+                </button>
+
+                <a class="button secondary" href="https://linkedin.com/in/gcmajor" target="_blank" rel="noreferrer">
+                  LinkedIn
+                </a>
+
+                <p class="form-hint muted">
+                  Prefer email? You can reach me at
+                  <a href="mailto:geoffreymajor@gmail.com">geoffreymajor@gmail.com</a>.
+                </p>
+              </div>
+            </div>
+
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </section>
+    </main>
 
-    <footer class="container footer">
-      <span>© <span id="year"></span> Geoffrey Major</span>
-      <span class="dot">•</span>
-      <span>Built on GitHub Pages</span>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Geoffrey Major</span>
+        <span class="sep">•</span>
+        <span>Built on GitHub Pages</span>
+      </div>
     </footer>
 
     <script>
+      // Footer year
       document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
 
-    <script>
-      const form = document.querySelector(".form");
-      const success = document.querySelector(".form-success");
+      // Contact form: prevent double submit + show status
+      const form = document.getElementById("contact-form");
+      const statusEl = document.getElementById("form-status");
+      const submitBtn = document.getElementById("submit-btn");
+      const btnText = submitBtn.querySelector(".btn-text");
 
-      if (form) {
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
+      let isSubmitting = false;
 
+      function setStatus(message, tone) {
+        statusEl.textContent = message;
+        statusEl.classList.remove("ok", "error");
+        if (tone) statusEl.classList.add(tone);
+      }
+
+      function setSubmitting(on) {
+        isSubmitting = on;
+        submitBtn.disabled = on;
+        submitBtn.classList.toggle("loading", on);
+        btnText.textContent = on ? "Sending…" : "Send message";
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (isSubmitting) return;
+
+        // Simple client validation (rely on required + type=email)
+        const name = form.querySelector("#name");
+        const email = form.querySelector("#email");
+        const message = form.querySelector("#message");
+
+        if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+          setStatus("Please fill out name, email, and message.", "error");
+          return;
+        }
+
+        setStatus("");
+        setSubmitting(true);
+
+        try {
           const data = new FormData(form);
           const response = await fetch(form.action, {
-            method: form.method,
+            method: "POST",
             body: data,
-            headers: {
-              Accept: "application/json",
-            },
+            headers: { Accept: "application/json" },
           });
 
           if (response.ok) {
             form.reset();
-            form.hidden = true;
-            success.hidden = false;
+            setStatus("Thanks. Your message was sent.", "ok");
           } else {
-            alert("Something went wrong. Please try again later.");
+            setStatus("Something went wrong. Please try again, or email me directly.", "error");
           }
-        });
-      }
+        } catch (err) {
+          setStatus("Network error. Please try again, or email me directly.", "error");
+        } finally {
+          setSubmitting(false);
+        }
+      });
     </script>
   </body>
 </html>
