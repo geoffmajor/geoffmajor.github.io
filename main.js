@@ -372,26 +372,39 @@
           label: "auth.spec.ts",
           code: `
 <span class="k">import</span> { test, expect } <span class="k">from</span> <span class="s">'@playwright/test'</span>;
-<span class="k">import</span> { LoginPage, ForgotPage } <span class="k">from</span> <span class="s">'./auth-pages'</span>;
+<span class="k">import</span> { DashboardPage, ForgotPage, LoginPage } <span class="k">from</span> <span class="s">'./auth-pages'</span>;
 <span class="k">import</span> { loginWithCredentials } <span class="k">from</span> <span class="s">'./auth-utils'</span>;
 
+<span class="k">const</span> ROUTES = {
+  login: <span class="s">'/login'</span>,
+  dashboard: <span class="s">'/dashboard'</span>,
+};
+
 <span class="f">test</span>.<span class="f">describe</span>(<span class="s">'Authentication Workflows'</span>, () => {
+  <span class="f">test</span>.<span class="f">beforeEach</span>(<span class="k">async</span> ({ page }) => {
+    <span class="k">await</span> page.<span class="f">goto</span>(ROUTES.login);
+  });
+
   <span class="f">test</span>(<span class="s">'admin login flow'</span>, <span class="k">async</span> ({ page }) => {
-    <span class="k">const</span> loginPage = <span class="k">new</span> <span class="f">LoginPage</span>(page);
-    <span class="k">await</span> page.<span class="f">goto</span>(<span class="s">'/login'</span>);
-    
+    <span class="k">const</span> dashboardPage = <span class="k">new</span> <span class="f">DashboardPage</span>(page);
+
     <span class="k">await</span> <span class="f">loginWithCredentials</span>(page);
-    <span class="k">await</span> <span class="f">expect</span>(loginPage.<span class="v">dashboardHeader</span>).<span class="f">toBeVisible</span>();
+    
+    <span class="k">await</span> <span class="f">expect</span>(page).<span class="f">toHaveURL</span>(ROUTES.dashboard);
+    <span class="k">await</span> <span class="f">expect</span>(dashboardPage.<span class="v">header</span>).<span class="f">toBeVisible</span>();
+
+    <span class="k">await</span> <span class="f">test</span>.<span class="f">step</span>(<span class="s">'Visual regression - dashboard'</span>, <span class="k">async</span> () => {
+      <span class="k">await</span> <span class="f">expect</span>(page).<span class="f">toHaveScreenshot</span>(<span class="s">'dashboard.png'</span>);
+    });
   });
 
   <span class="f">test</span>(<span class="s">'reset password flow'</span>, <span class="k">async</span> ({ page }) => {
     <span class="k">const</span> loginPage = <span class="k">new</span> <span class="f">LoginPage</span>(page);
     <span class="k">const</span> forgotPage = <span class="k">new</span> <span class="f">ForgotPage</span>(page);
 
-    <span class="k">await</span> page.<span class="f">goto</span>(<span class="s">'/login'</span>);
     <span class="k">await</span> loginPage.<span class="v">forgotLink</span>.<span class="f">click</span>();
-
     <span class="k">await</span> forgotPage.<span class="f">requestReset</span>(<span class="s">'user@example.com'</span>);
+    
     <span class="k">await</span> <span class="f">expect</span>(forgotPage.<span class="v">successMessage</span>).<span class="f">toBeVisible</span>();
   });
 });
@@ -403,21 +416,24 @@
           code: `
 <span class="k">import</span> { Locator, Page } <span class="k">from</span> <span class="s">'@playwright/test'</span>;
 
+<span class="c">/**
+ * Encapsulates login page interactions and locators.
+ * Uses strict ARIA-based selection for resilience.
+ */</span>
 <span class="k">export class</span> <span class="f">LoginPage</span> {
   <span class="v">readonly</span> email: Locator;
   <span class="v">readonly</span> pass: Locator;
   <span class="v">readonly</span> submit: Locator;
   <span class="v">readonly</span> forgotLink: Locator;
-  <span class="v">readonly</span> dashboardHeader: Locator;
 
   <span class="k">constructor</span>(<span class="v">readonly</span> page: Page) {
     <span class="v">this</span>.email = page.<span class="f">getByLabel</span>(<span class="s">'Email'</span>);
     <span class="v">this</span>.pass = page.<span class="f">getByLabel</span>(<span class="s">'Password'</span>);
     <span class="v">this</span>.submit = page.<span class="f">getByRole</span>(<span class="s">'button'</span>, { name: <span class="s">'Log in'</span> });
     <span class="v">this</span>.forgotLink = page.<span class="f">getByText</span>(<span class="s">'Forgot Password?'</span>);
-    <span class="v">this</span>.dashboardHeader = page.<span class="f">getByRole</span>(<span class="s">'heading'</span>, { name: <span class="s">'Dashboard'</span> });
   }
 
+  <span class="f">/** Fill credentials and submit the form. */</span>
   <span class="k">async</span> <span class="f">login</span>(email: string, pass: string): <span class="f">Promise</span>&lt;<span class="v">void</span>&gt; {
     <span class="k">await</span> <span class="v">this</span>.email.<span class="f">fill</span>(email);
     <span class="k">await</span> <span class="v">this</span>.pass.<span class="f">fill</span>(pass);
@@ -425,6 +441,20 @@
   }
 }
 
+<span class="c">/**
+ * Post-login dashboard view.
+ */</span>
+<span class="k">export class</span> <span class="f">DashboardPage</span> {
+  <span class="v">readonly</span> header: Locator;
+
+  <span class="k">constructor</span>(<span class="v">readonly</span> page: Page) {
+    <span class="v">this</span>.header = page.<span class="f">getByRole</span>(<span class="s">'heading'</span>, { name: <span class="s">'Dashboard'</span> });
+  }
+}
+
+<span class="c">/**
+ * Reset password workflow.
+ */</span>
 <span class="k">export class</span> <span class="f">ForgotPage</span> {
   <span class="v">readonly</span> email: Locator;
   <span class="v">readonly</span> submit: Locator;
@@ -436,6 +466,7 @@
     <span class="v">this</span>.successMessage = page.<span class="f">getByText</span>(<span class="s">'Reset link sent'</span>);
   }
 
+  <span class="f">/** Submit the password reset request. */</span>
   <span class="k">async</span> <span class="f">requestReset</span>(email: string): <span class="f">Promise</span>&lt;<span class="v">void</span>&gt; {
     <span class="k">await</span> <span class="v">this</span>.email.<span class="f">fill</span>(email);
     <span class="k">await</span> <span class="v">this</span>.submit.<span class="f">click</span>();
@@ -450,16 +481,17 @@
 <span class="k">import</span> { Page } <span class="k">from</span> <span class="s">'@playwright/test'</span>;
 <span class="k">import</span> { LoginPage } <span class="k">from</span> <span class="s">'./auth-pages'</span>;
 
+<span class="k">const</span> DEFAULT_USER = {
+  email: process.env.TEST_USER ?? <span class="s">'admin@example.com'</span>,
+  pass: process.env.TEST_PASS ?? <span class="s">'secure-password'</span>
+};
+
 <span class="c">/**
- * Centralized auth logic using environmental config.
+ * Standardizes common auth flows to keep spec files focused.
  */</span>
 <span class="k">export async function</span> <span class="f">loginWithCredentials</span>(page: Page): <span class="f">Promise</span>&lt;<span class="v">void</span>&gt; {
   <span class="k">const</span> loginPage = <span class="k">new</span> <span class="f">LoginPage</span>(page);
-  
-  <span class="k">const</span> USER_EMAIL = process.env.TEST_USER ?? <span class="s">'admin@example.com'</span>;
-  <span class="k">const</span> USER_PASS = process.env.TEST_PASS ?? <span class="s">'secure-password'</span>;
-
-  <span class="k">await</span> loginPage.<span class="f">login</span>(USER_EMAIL, USER_PASS);
+  <span class="k">await</span> loginPage.<span class="f">login</span>(DEFAULT_USER.email, DEFAULT_USER.pass);
 }
 `
         }
