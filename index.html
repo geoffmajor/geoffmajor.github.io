@@ -359,7 +359,10 @@
         <article class="card project">
           <header class="card-head">
             <div class="card-main">
-              <h3>Playwright E2E Framework</h3>
+              <div class="project-title-row">
+                <h3>Playwright E2E Framework</h3>
+                <span class="impact-pill" aria-label="Impact">CI gating • reduced manual regression</span>
+              </div>
               <p class="card-meta"><span class="meta-accent">Castiron</span> • End-to-end automation foundation for critical workflows</p>
             </div>
             <div class="card-side" aria-hidden="true">
@@ -369,24 +372,17 @@
 
           <div class="project-body">
             <div class="project-block">
-              <div class="project-label">Outcome</div>
-              <p class="impact"><strong>Impact:</strong> Enabled CI gating and reduced manual regression effort across releases.</p>
+              <div class="project-label">What I built</div>
+              <ul class="bullets compact">
+                <li>Designed and implemented a Playwright-based E2E framework covering high-risk user journeys.</li>
+                <li>Integrated tests into CI to catch regressions before release.</li>
+                <li>Established patterns for maintainable, scalable test development.</li>
+              </ul>
             </div>
 
             <div class="project-block">
-              <div class="project-label">What I built</div>
-              <ul class="bullets compact project-list">
-                <li>Designed and implemented a Playwright-based E2E framework covering high-risk user journeys.</li>
-                <li>Integrated tests into CI to catch regressions before release.</li>
-
-                <li class="project-more is-hidden">
-                  Established patterns for maintainable, scalable test development.
-                </li>
-              </ul>
-
-              <button class="project-toggle" type="button" aria-expanded="false">
-                Show more
-              </button>
+              <div class="project-label">Outcome</div>
+              <p class="impact"><strong>Impact:</strong> Enabled CI gating and reduced manual regression effort across releases.</p>
             </div>
 
             <div class="tags" aria-label="Project technologies">
@@ -401,7 +397,10 @@
         <article class="card project">
           <header class="card-head">
             <div class="card-main">
-              <h3>Cypress UI Testing Framework</h3>
+              <div class="project-title-row">
+                <h3>Cypress UI Testing Framework</h3>
+                <span class="impact-pill" aria-label="Impact">baseline coverage • fewer late defects</span>
+              </div>
               <p class="card-meta"><span class="meta-accent">Bottomline</span> • Baseline automation for a legacy payments platform</p>
             </div>
             <div class="card-side" aria-hidden="true">
@@ -411,24 +410,17 @@
 
           <div class="project-body">
             <div class="project-block">
-              <div class="project-label">Outcome</div>
-              <p class="impact"><strong>Impact:</strong> Increased confidence in releases and reduced late-cycle defects.</p>
+              <div class="project-label">What I built</div>
+              <ul class="bullets compact">
+                <li>Introduced Cypress to establish baseline E2E coverage for critical workflows.</li>
+                <li>Partnered with engineering to define test strategy and ownership.</li>
+                <li>Improved visibility into UI and API failures during releases.</li>
+              </ul>
             </div>
 
             <div class="project-block">
-              <div class="project-label">What I built</div>
-              <ul class="bullets compact project-list">
-                <li>Introduced Cypress to establish baseline E2E coverage for critical workflows.</li>
-                <li>Partnered with engineering to define test strategy and ownership.</li>
-
-                <li class="project-more is-hidden">
-                  Improved visibility into UI and API failures during releases.
-                </li>
-              </ul>
-
-              <button class="project-toggle" type="button" aria-expanded="false">
-                Show more
-              </button>
+              <div class="project-label">Outcome</div>
+              <p class="impact"><strong>Impact:</strong> Increased confidence in releases and reduced late-cycle defects.</p>
             </div>
 
             <div class="tags" aria-label="Project technologies">
@@ -524,22 +516,6 @@
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Projects: progressive disclosure
-      const toggles = document.querySelectorAll(".project-toggle");
-      toggles.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const card = btn.closest(".project");
-          if (!card) return;
-
-          const moreItems = card.querySelectorAll(".project-more");
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-
-          moreItems.forEach((li) => li.classList.toggle("is-hidden", expanded));
-          btn.setAttribute("aria-expanded", expanded ? "false" : "true");
-          btn.textContent = expanded ? "Show more" : "Show less";
-        });
-      });
 
       // Form: prevent double submit + show status (and spinner)
       const form = document.getElementById("contact-form");
