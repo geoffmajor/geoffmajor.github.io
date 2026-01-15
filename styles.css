@@ -602,17 +602,41 @@ h1 {
 
 /* Site-level footnote (closing aside) */
 .site-footnote {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
   max-width: 72ch;
-  margin: 28px auto 0;
-  padding: 14px 22px 0;
   font-size: 13.5px;
   line-height: 1.5;
   opacity: 0.85;
+
+  /* Choose one: centered or left */
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Subtle divider */
-.site-footnote {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+.site-footnote-long,
+.site-footnote-short {
+  display: inline;
+}
+
+/* Mobile: show reduced version */
+@media (max-width: 700px) {
+  .site-footnote {
+    text-align: left;
+    max-width: 65ch;
+    opacity: 0.82;
+  }
+
+  .site-footnote-long { display: none; }
+  .site-footnote-short { display: inline; }
+}
+
+/* Desktop: hide reduced version */
+@media (min-width: 701px) {
+  .site-footnote-short { display: none; }
 }
 
 /* Buttons */
