@@ -602,12 +602,13 @@ h1 {
 
 /* Site-level footnote (closing aside) */
 .site-footnote {
-  margin: 22px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+ margin: 28px 0 0;
+ padding-top: 18px;
+ border-top: 1px solid rgba(255, 255, 255, 0.08);
 
-  max-width: 72ch;
-  font-size: 13.5px;
-  line-height: 1.5;
+ max-width: 72ch;
+ font-size: 13.5px;
+ line-height: 1.5;
   opacity: 0.75;
 
   text-align: left;
@@ -867,7 +868,7 @@ input:focus, textarea:focus {
 /* Footer */
 .footer {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  margin-top: 32px;
+  margin-top: 24px;
   padding: 20px 0 44px;
   color: rgba(233, 237, 242, 0.65);
 }
