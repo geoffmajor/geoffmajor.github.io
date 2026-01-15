@@ -259,10 +259,14 @@ h1 {
 .avatar {
   width: 100%;
   max-width: 280px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   border-radius: var(--radius);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   background: rgba(255, 255, 255, 0.04);
+  object-fit: cover;
+  display: block;
 }
 
 /* Hero stagger animation */

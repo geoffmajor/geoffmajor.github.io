@@ -63,6 +63,35 @@ document.getElementById("year").textContent = new Date().getFullYear();
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       }
 
+      // If a field is currently invalid, re-check on input so errors clear immediately
+      function maybeClearErrorOnInput(fieldId) {
+        const field = form.querySelector("#" + fieldId);
+        if (!field) return;
+
+        // Only do work if the field is currently marked invalid
+        if (field.getAttribute("aria-invalid") !== "true") return;
+
+        const value = field.value.trim();
+
+        if (fieldId === "email") {
+          if (value && isValidEmail(value)) setFieldError("email", "");
+        } else {
+          if (value) setFieldError(fieldId, "");
+        }
+
+        // If the form-wide error banner is showing and all fields are now valid, clear it
+        const anyInvalid = ["name", "email", "message"].some(
+          (id) => form.querySelector("#" + id)?.getAttribute("aria-invalid") === "true"
+        );
+        if (!anyInvalid && statusEl.classList.contains("error")) setStatus("");
+      }
+
+      ["name", "email", "message"].forEach((id) => {
+        const field = form.querySelector("#" + id);
+        if (!field) return;
+        field.addEventListener("input", () => maybeClearErrorOnInput(id));
+      });
+
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         if (submitting) return;

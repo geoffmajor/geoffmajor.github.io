@@ -187,13 +187,20 @@
         </div>
 
         <!-- Desktop-only aside -->
-        <aside class="hero-aside desktop-only">
+        <div class="hero-aside desktop-only" aria-labelledby="focus-areas-title">
           <div class="avatar-card">
-            <img class="avatar" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" width="560" height="560" decoding="async" />
+            <img
+              class="avatar"
+              src="./assets/avatar.png"
+              alt="Portrait of Geoffrey Major"
+              width="560"
+              height="560"
+              decoding="async"
+            />
           </div>
 
           <div class="panel">
-            <h2 class="panel-title">Focus Areas</h2>
+            <h2 class="panel-title" id="focus-areas-title">Focus Areas</h2>
             <ul class="bullets">
               <li>Automation that supports fast releases (Playwright, Cypress)</li>
               <li>Exploratory and risk-based testing</li>
@@ -201,7 +208,7 @@
               <li>CI feedback loops (GitHub Actions)</li>
             </ul>
           </div>
-        </aside>
+        </div>
       </section>
 
       <!-- EXPERIENCE -->
