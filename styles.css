@@ -944,6 +944,30 @@ input:focus, textarea:focus {
   .timeline-card::before { left: -16px; }
 }
 
+/* Active section in header nav (subtle) */
+.nav a.is-active {
+  color: rgba(233, 237, 242, 0.92);
+  font-weight: 850;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(93, 214, 255, 0.45);
+}
+
+/* Keep Resume CTA unchanged even if it somehow gets marked active */
+.nav a.nav-cta.is-active::after {
+  display: none;
+}
+
 /* Mobile form stacking */
 @media (max-width: 620px) {
   .form-grid { grid-template-columns: 1fr; }
