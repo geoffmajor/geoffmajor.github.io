@@ -580,6 +580,71 @@
         </article>
       </section>
 
+      <!-- LIVE DEMO (Moved to Projects) -->
+      <!-- We treat this as a "project" to show code style -->
+      <!-- LIVE DEMO (Moved to Projects) -->
+      <!-- We treat this as a "project" to show code style -->
+      <article class="card project demo-card">
+        <header class="card-head">
+          <div class="card-main">
+            <div class="project-title-row demo-title-row">
+              <h3>Automation Demo</h3>
+              <span class="impact-pill" aria-label="Impact">interactive demo • live execution</span>
+            </div>
+            <p class="card-meta"><span class="meta-accent">Live Sandbox</span> • A hands-on look at the patterns I use for scalable automation.</p>
+          </div>
+          <div class="card-side" aria-hidden="true">
+            <img class="logo" src="./assets/playwright-logo.webp" alt="" width="34" height="34" loading="lazy" decoding="async" />
+          </div>
+        </header>
+
+        <div class="project-body">
+          <div class="project-block">
+            <div class="project-label">Framework Design Standards</div>
+            <ul class="bullets compact">
+              <li><strong>Maintainability:</strong> Strict Page Object Model to decouple test logic from DOM implementation.</li>
+              <li><strong>Reliability:</strong> Using accessibility-first locators (e.g. <code>getByRole</code>) to prevent brittle failures.</li>
+              <li><strong>Clarity:</strong> Abstracting complex setup into shared utilities so specs focus purely on user workflows.</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Demo Region -->
+          <div class="demo-wrapper">
+            <div class="demo-header">
+              <div class="demo-tabs" role="tablist" aria-label="Code files">
+                <button class="demo-tab active" role="tab" aria-selected="true">auth.spec.ts</button>
+                <button class="demo-tab" role="tab" aria-selected="false">auth-pages.ts</button>
+                <button class="demo-tab" role="tab" aria-selected="false">auth-utils.ts</button>
+              </div>
+              <div class="demo-actions">
+                <button id="run-test-btn" class="button primary button-sm" aria-label="Run test">
+                  <span class="btn-icon">▶</span> <span class="btn-text-mobile">Run Suite</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="code-window" id="code-panel" role="tabpanel" tabindex="0" aria-label="Code Source View">
+              <pre><code id="code-content" class="language-typescript"></code></pre>
+            </div>
+
+            <div class="terminal">
+              <div class="terminal-bar">
+                <div class="term-dot red"></div>
+                <div class="term-dot yellow"></div>
+                <div class="term-dot green"></div>
+                <span class="term-title">bash — 80x24</span>
+              </div>
+              <div class="terminal-body" id="term-body" tabindex="0" aria-label="Terminal Output" aria-live="polite">
+                <div class="term-line"><span class="term-prompt">$</span> <span class="term-cursor"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+
+
       <!-- CONTACT -->
       <section id="contact" class="section reveal">
         <div class="section-head">

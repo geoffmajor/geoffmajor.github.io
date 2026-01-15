@@ -353,4 +353,234 @@
     syncHeaderHeightVar();
     updateActiveFromScroll();
   }, 50);
+
+  // --- Interactive Demo Logic ---
+  (function initDemo() {
+    const codeContentEl = document.getElementById("code-content");
+    const runBtn = document.getElementById("run-test-btn");
+    const termBody = document.getElementById("term-body");
+    const tabContainer = document.querySelector(".demo-tabs");
+
+    if (!codeContentEl || !runBtn || !termBody || !tabContainer) return;
+
+    // Single unified scenario
+    const demoData = {
+      command: "npx playwright test auth.spec.ts",
+      files: [
+        {
+          id: "auth-spec",
+          label: "auth.spec.ts",
+          code: `
+<span class="k">import</span> { test, expect } <span class="k">from</span> <span class="s">'@playwright/test'</span>;
+<span class="k">import</span> { LoginPage, ForgotPage } <span class="k">from</span> <span class="s">'./auth-pages'</span>;
+<span class="k">import</span> { loginWithCredentials } <span class="k">from</span> <span class="s">'./auth-utils'</span>;
+
+<span class="f">test</span>.<span class="f">describe</span>(<span class="s">'Authentication Workflows'</span>, () => {
+  <span class="f">test</span>(<span class="s">'admin login flow'</span>, <span class="k">async</span> ({ page }) => {
+    <span class="k">const</span> loginPage = <span class="k">new</span> <span class="f">LoginPage</span>(page);
+    <span class="k">await</span> page.<span class="f">goto</span>(<span class="s">'/login'</span>);
+    
+    <span class="k">await</span> <span class="f">loginWithCredentials</span>(page);
+    <span class="k">await</span> <span class="f">expect</span>(loginPage.<span class="v">dashboardHeader</span>).<span class="f">toBeVisible</span>();
+  });
+
+  <span class="f">test</span>(<span class="s">'reset password flow'</span>, <span class="k">async</span> ({ page }) => {
+    <span class="k">const</span> loginPage = <span class="k">new</span> <span class="f">LoginPage</span>(page);
+    <span class="k">const</span> forgotPage = <span class="k">new</span> <span class="f">ForgotPage</span>(page);
+
+    <span class="k">await</span> page.<span class="f">goto</span>(<span class="s">'/login'</span>);
+    <span class="k">await</span> loginPage.<span class="v">forgotLink</span>.<span class="f">click</span>();
+
+    <span class="k">await</span> forgotPage.<span class="f">requestReset</span>(<span class="s">'user@example.com'</span>);
+    <span class="k">await</span> <span class="f">expect</span>(forgotPage.<span class="v">successMessage</span>).<span class="f">toBeVisible</span>();
+  });
+});
+`
+        },
+        {
+          id: "auth-pages",
+          label: "auth-pages.ts",
+          code: `
+<span class="k">import</span> { Locator, Page } <span class="k">from</span> <span class="s">'@playwright/test'</span>;
+
+<span class="k">export class</span> <span class="f">LoginPage</span> {
+  <span class="v">readonly</span> email: Locator;
+  <span class="v">readonly</span> pass: Locator;
+  <span class="v">readonly</span> submit: Locator;
+  <span class="v">readonly</span> forgotLink: Locator;
+  <span class="v">readonly</span> dashboardHeader: Locator;
+
+  <span class="k">constructor</span>(<span class="v">readonly</span> page: Page) {
+    <span class="v">this</span>.email = page.<span class="f">getByLabel</span>(<span class="s">'Email'</span>);
+    <span class="v">this</span>.pass = page.<span class="f">getByLabel</span>(<span class="s">'Password'</span>);
+    <span class="v">this</span>.submit = page.<span class="f">getByRole</span>(<span class="s">'button'</span>, { name: <span class="s">'Log in'</span> });
+    <span class="v">this</span>.forgotLink = page.<span class="f">getByText</span>(<span class="s">'Forgot Password?'</span>);
+    <span class="v">this</span>.dashboardHeader = page.<span class="f">getByRole</span>(<span class="s">'heading'</span>, { name: <span class="s">'Dashboard'</span> });
+  }
+
+  <span class="k">async</span> <span class="f">login</span>(email: string, pass: string): <span class="f">Promise</span>&lt;<span class="v">void</span>&gt; {
+    <span class="k">await</span> <span class="v">this</span>.email.<span class="f">fill</span>(email);
+    <span class="k">await</span> <span class="v">this</span>.pass.<span class="f">fill</span>(pass);
+    <span class="k">await</span> <span class="v">this</span>.submit.<span class="f">click</span>();
+  }
+}
+
+<span class="k">export class</span> <span class="f">ForgotPage</span> {
+  <span class="v">readonly</span> email: Locator;
+  <span class="v">readonly</span> submit: Locator;
+  <span class="v">readonly</span> successMessage: Locator;
+
+  <span class="k">constructor</span>(<span class="v">readonly</span> page: Page) {
+    <span class="v">this</span>.email = page.<span class="f">getByLabel</span>(<span class="s">'Email Address'</span>);
+    <span class="v">this</span>.submit = page.<span class="f">getByRole</span>(<span class="s">'button'</span>, { name: <span class="s">'Send Link'</span> });
+    <span class="v">this</span>.successMessage = page.<span class="f">getByText</span>(<span class="s">'Reset link sent'</span>);
+  }
+
+  <span class="k">async</span> <span class="f">requestReset</span>(email: string): <span class="f">Promise</span>&lt;<span class="v">void</span>&gt; {
+    <span class="k">await</span> <span class="v">this</span>.email.<span class="f">fill</span>(email);
+    <span class="k">await</span> <span class="v">this</span>.submit.<span class="f">click</span>();
+  }
+}
+`
+        },
+        {
+          id: "auth-utils",
+          label: "auth-utils.ts",
+          code: `
+<span class="k">import</span> { Page } <span class="k">from</span> <span class="s">'@playwright/test'</span>;
+<span class="k">import</span> { LoginPage } <span class="k">from</span> <span class="s">'./auth-pages'</span>;
+
+<span class="c">/**
+ * Centralized auth logic using environmental config.
+ */</span>
+<span class="k">export async function</span> <span class="f">loginWithCredentials</span>(page: Page): <span class="f">Promise</span>&lt;<span class="v">void</span>&gt; {
+  <span class="k">const</span> loginPage = <span class="k">new</span> <span class="f">LoginPage</span>(page);
+  
+  <span class="k">const</span> USER_EMAIL = process.env.TEST_USER ?? <span class="s">'admin@example.com'</span>;
+  <span class="k">const</span> USER_PASS = process.env.TEST_PASS ?? <span class="s">'secure-password'</span>;
+
+  <span class="k">await</span> loginPage.<span class="f">login</span>(USER_EMAIL, USER_PASS);
+}
+`
+        }
+      ],
+      output: [
+         { html: '<span class="term-info">Running 2 tests using 1 worker</span>', delay: 800 },
+         { html: '<span class="term-muted">  1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow</span>', delay: 900 },
+         { html: '<span class="term-success">  ✓</span> <span class="term-muted">1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow (1.2s)</span>', delay: 100 },
+         { html: '<span class="term-muted">  2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow</span>', delay: 800 },
+         { html: '<span class="term-success">  ✓</span> <span class="term-muted">2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow (0.8s)</span>', delay: 100 },
+         { html: '', delay: 50 },
+         { html: '<span class="term-success">  2 passed</span> <span class="term-muted">(2.4s)</span>', delay: 50 }
+      ]
+    };
+
+    let activeFileIndex = 0;
+    let isRunning = false;
+
+    function renderTabs() {
+      tabContainer.innerHTML = "";
+      
+      demoData.files.forEach((file, index) => {
+        const btn = document.createElement("button");
+        btn.className = `demo-tab ${index === activeFileIndex ? "active" : ""}`;
+        btn.setAttribute("role", "tab");
+        btn.setAttribute("aria-selected", index === activeFileIndex);
+        btn.textContent = file.label;
+        
+        btn.addEventListener("click", () => {
+          activeFileIndex = index;
+          renderTabs();
+          renderCode();
+        });
+        
+        tabContainer.appendChild(btn);
+      });
+    }
+
+    function renderCode() {
+      const file = demoData.files[activeFileIndex];
+      codeContentEl.innerHTML = file.code.trim();
+    }
+
+    // Terminal Animation
+    async function typeText(text, element, delay = 30) {
+      for (const char of text) {
+        element.textContent += char;
+        await new Promise(r => setTimeout(r, delay));
+      }
+    }
+    
+    function resetTerminal() {
+        termBody.innerHTML = '<div class="term-line"><span class="term-prompt">$</span> <span class="term-cursor"></span></div>';
+    }
+
+    async function runTerminal() {
+      if (isRunning) return;
+      isRunning = true;
+      runBtn.disabled = true;
+      
+      const btnText = runBtn.querySelector(".btn-text-mobile");
+      if (btnText) btnText.textContent = "Running...";
+
+      // Auto-scroll to terminal on mobile so user sees the action
+      if (window.innerWidth < 768) {
+        termBody.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      
+      // Clear terminal (keep prompt)
+      resetTerminal();
+      
+      const lines = termBody.querySelectorAll(".term-line");
+      const activeLine = lines[lines.length - 1];
+      const cursor = activeLine.querySelector(".term-cursor");
+      
+      // Remove cursor from prompt line temporarily while typing
+      cursor.remove();
+      
+      // 1. Type command
+      const cmdSpan = document.createElement("span");
+      activeLine.appendChild(cmdSpan);
+      await typeText(demoData.command, cmdSpan, 40);
+      
+      activeLine.appendChild(cursor); // Put cursor back
+      await new Promise(r => setTimeout(r, 600)); // Wait before running
+      
+      // 2. Output lines
+      const addLine = (html, delay = 100) => {
+        return new Promise(resolve => {
+          // Remove cursor from current last line
+          const currentCursor = termBody.querySelector(".term-cursor");
+          if (currentCursor) currentCursor.remove();
+          
+          const div = document.createElement("div");
+          div.className = "term-line";
+          div.innerHTML = html; // Allow HTML styling
+          termBody.appendChild(div);
+          
+          // Scroll to bottom
+          termBody.scrollTop = termBody.scrollHeight;
+          
+          setTimeout(resolve, delay);
+        });
+      };
+
+      for (const line of demoData.output) {
+         await addLine(line.html, line.delay);
+      }
+      
+      await addLine('<span class="term-prompt">$</span> <span class="term-cursor"></span>'); // Final prompt with cursor
+
+      isRunning = false;
+      runBtn.disabled = false;
+      if (btnText) btnText.textContent = "Run Again";
+    }
+
+    runBtn.addEventListener("click", runTerminal);
+
+    // Init
+    renderTabs();
+    renderCode();
+  })();
+
 })();
