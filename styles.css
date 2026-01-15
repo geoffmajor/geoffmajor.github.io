@@ -711,6 +711,23 @@ button.button { color: var(--text); }
 }
 
 .field { display: grid; gap: 8px; }
+
+/* Form validation: show inline errors and highlight invalid inputs */
+.field p[role="alert"] {
+  margin: 0;
+  font-size: 13px;
+  color: #ffb4b4;
+}
+
+.field p[role="alert"]:empty {
+  display: none;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: rgba(255, 180, 180, 0.9);
+}
+
 .field-full { grid-column: 1 / -1; }
 
 label {
