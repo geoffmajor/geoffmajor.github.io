@@ -724,17 +724,27 @@
         const offset = getActivationOffset();
 
         // Bottom of page: force last section active
-        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        const nearBottom =
+          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
         if (nearBottom) return sections[sections.length - 1].id;
 
-        // Pick the section whose bounds contain the activation line
+        // 1) Preferred: section that actually contains the activation line
         for (let i = sections.length - 1; i >= 0; i--) {
           const rect = sections[i].getBoundingClientRect();
-          if (rect.top <= offset && rect.bottom > offset) return sections[i].id;
+          if (rect.top <= offset && rect.bottom > offset) {
+            return sections[i].id;
+          }
         }
 
-        // Above first tracked section
-        return null;
+        // 2) Fallback: last section whose top has crossed the activation line
+        let lastPassed = null;
+        for (const section of sections) {
+          if (section.getBoundingClientRect().top <= offset) {
+            lastPassed = section.id;
+          }
+        }
+
+        return lastPassed;
       }
 
       // Lock active state during programmatic (nav) scroll so it doesn’t flicker
