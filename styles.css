@@ -28,7 +28,7 @@ section[id] {
 }
 @media (max-width: 700px) {
   section[id] {
-    scroll-margin-top: 76px;
+    scroll-margin-top: 92px;
   }
 }
 
