@@ -681,7 +681,9 @@
       );
       reveals.forEach((el) => io.observe(el));
 
-      // Header nav: highlight active section (subtle)
+      // Header nav: highlight active section (predictable scroll-based)
+      const headerEl = document.getElementById("site-header");
+
       const headerNavLinks = Array.from(document.querySelectorAll(".nav a"))
         .filter((a) => a.getAttribute("href")?.startsWith("#"))
         .filter((a) => !a.classList.contains("nav-cta"));
@@ -696,34 +698,60 @@
 
       function setActiveNav(id) {
         headerNavLinks.forEach((a) => {
-          const match = a.getAttribute("href") === `#${id}`;
+          const match = id && a.getAttribute("href") === `#${id}`;
           a.classList.toggle("is-active", match);
-          a.setAttribute("aria-current", match ? "true" : "false");
+          // aria-current should be "page" or "true"; "page" is more standard
+          if (match) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
         });
       }
 
-      if (sections.length) {
-        const navObserver = new IntersectionObserver(
-          (entries) => {
-            // Choose the most visible intersecting section
-            const visible = entries
-              .filter((e) => e.isIntersecting)
-              .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-            if (visible?.target?.id) setActiveNav(visible.target.id);
-          },
-          {
-            threshold: [0.25, 0.4, 0.55],
-            // Push the "active" zone slightly below the sticky header
-            rootMargin: "-20% 0px -65% 0px",
-          }
-        );
-
-        sections.forEach((s) => navObserver.observe(s));
-
-        // Default active state on load (use first section if nothing intersects yet)
-        setActiveNav(sections[0].id);
+      function getHeaderOffset() {
+        // Use actual rendered header height (works on mobile when header becomes taller)
+        return headerEl ? Math.ceil(headerEl.getBoundingClientRect().height) : 0;
       }
+
+      function updateActiveFromScroll() {
+        if (!sections.length) return;
+
+        const offset = getHeaderOffset() + 20; // little breathing room below sticky header
+
+        // If user is near the bottom, force Contact active (fixes "never activates Contact")
+        const nearBottom =
+          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        if (nearBottom) {
+          setActiveNav(sections[sections.length - 1].id);
+          return;
+        }
+
+        // Pick the last section whose top has crossed the offset line
+        let currentId = null;
+        for (const section of sections) {
+          const top = section.getBoundingClientRect().top;
+          if (top <= offset) currentId = section.id;
+        }
+
+        // If we are above the first section, clear active state (fixes "Experience always active on load")
+        setActiveNav(currentId);
+      }
+
+      // Throttle with requestAnimationFrame so it stays smooth
+      let ticking = false;
+      function onScrollOrResize() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          updateActiveFromScroll();
+          ticking = false;
+        });
+      }
+
+      window.addEventListener("scroll", onScrollOrResize, { passive: true });
+      window.addEventListener("resize", onScrollOrResize);
+
+      // Run once on load (and again after hash navigation, if any)
+      updateActiveFromScroll();
+      window.setTimeout(updateActiveFromScroll, 50);
     </script>
   </body>
 </html>
