@@ -407,20 +407,21 @@
             <div class="form-grid">
               <div class="field">
                 <label for="name">Name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required />
+                <input id="name" name="name" type="text" autocomplete="name" required / aria-describedby="name-error">
               </div>
 
               <div class="field">
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
+                <input id="email" name="email" type="email" autocomplete="email" required / aria-describedby="email-error">
               </div>
 
               <div class="field field-full">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
+                <textarea id="message" name="message" rows="6" required aria-describedby="message-error"></textarea>
+                <p id="message-error" class="sr-only" role="alert"></p>
               </div>
 
-              <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+              <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
               <div class="field field-full actions">
                 <button class="button primary" id="submit-btn" type="submit" aria-label="Send message">
@@ -487,6 +488,28 @@
         btnText.textContent = on ? "Sending…" : "Send Message";
       }
 
+      function setFieldError(fieldId, message) {
+        const field = form.querySelector("#" + fieldId);
+        const errEl = document.getElementById(fieldId + "-error");
+        if (!field || !errEl) return;
+
+        const hasError = Boolean(message);
+        field.setAttribute("aria-invalid", hasError ? "true" : "false");
+        errEl.textContent = message || "";
+      }
+
+      function clearFieldErrors() {
+        setFieldError("name", "");
+        setFieldError("email", "");
+        setFieldError("message", "");
+      }
+
+      function focusFirstInvalid(fieldId) {
+        if (!fieldId) return;
+        const el = form.querySelector("#" + fieldId);
+        if (el) el.focus();
+      }
+
       function isValidEmail(value) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       }
@@ -499,13 +522,31 @@
         const email = form.querySelector("#email").value.trim();
         const message = form.querySelector("#message").value.trim();
 
-        if (!name || !email || !message) {
-          setStatus("Please fill out name, email, and message.", "error");
-          return;
+        clearFieldErrors();
+
+        let firstInvalid = null;
+
+        if (!name) {
+          setFieldError("name", "Name is required.");
+          firstInvalid = firstInvalid || "name";
         }
 
-        if (!isValidEmail(email)) {
-          setStatus("Please enter a valid email address.", "error");
+        if (!email) {
+          setFieldError("email", "Email is required.");
+          firstInvalid = firstInvalid || "email";
+        } else if (!isValidEmail(email)) {
+          setFieldError("email", "Please enter a valid email address.");
+          firstInvalid = firstInvalid || "email";
+        }
+
+        if (!message) {
+          setFieldError("message", "Message is required.");
+          firstInvalid = firstInvalid || "message";
+        }
+
+        if (firstInvalid) {
+          setStatus("Please review the highlighted fields.", "error");
+          focusFirstInvalid(firstInvalid);
           return;
         }
 
@@ -522,6 +563,7 @@
 
           if (response.ok) {
             form.reset();
+            clearFieldErrors();
             setStatus("Thanks. Your message was sent.", "ok");
           } else {
             setStatus("Something went wrong. Please try again, or email me directly.", "error");
