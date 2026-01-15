@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +23,7 @@
     <meta property="og:title" content="Geoffrey Major | Quality Assurance Engineer" />
     <meta
       property="og:description"
-      content="QA engineer with 8 years of experience across manual testing, exploratory testing, and UI/API automation."
+      content="QA engineer with 8+ years of experience across manual testing, exploratory testing, and UI/API automation."
     />
     <meta property="og:url" content="https://geoffreymajor.com/" />
     <meta property="og:image" content="https://geoffreymajor.com/assets/og-image.png" />
@@ -78,7 +79,7 @@
             rel="noreferrer"
             aria-label="Open resume PDF in a new tab"
           >
-            Resume
+            Resume (PDF)
           </a>
         </nav>
       </div>
@@ -122,16 +123,19 @@
             </div>
           </div>
 
-          <p class="kicker">Quality Assurance Engineer</p>
-          <h1>Release confidence through pragmatic testing and automation.</h1>
+          <p class="kicker hero-anim hero-anim-1">Quality Assurance Engineer</p>
 
-          <p class="lead">
-            QA engineer with 8 years of experience across manual testing, exploratory testing, and UI/API automation for
-            web, mobile, and desktop applications. I focus on pragmatic testing strategies that reduce regressions,
-            clarify requirements, and keep releases moving.
+          <h1 class="hero-anim hero-anim-2">
+            <span class="accent-underline">Release confidence</span> through pragmatic testing and automation.
+          </h1>
+
+          <p class="lead hero-anim hero-anim-3">
+            QA engineer with 8+ years of experience across manual testing, exploratory testing, and UI/API automation for
+            web, mobile, and desktop applications. I focus on <span class="accent-underline accent-underline--soft">pragmatic testing</span> strategies that reduce
+            regressions, clarify requirements, and keep releases moving.
           </p>
 
-          <div class="hero-actions">
+          <div class="hero-actions hero-anim hero-anim-4">
             <a
               class="button primary"
               href="./assets/Major_Geoffrey_Resume.pdf"
@@ -139,7 +143,7 @@
               rel="noreferrer"
               aria-label="View resume PDF in a new tab"
             >
-              View Resume
+              Resume (PDF)
             </a>
 
             <!-- Desktop-only LinkedIn and GitHub icons beside resume button -->
@@ -164,11 +168,11 @@
             </a>
           </div>
 
-          <p class="meta desktop-only">Reno, NV • Remote</p>
-          <p class="meta desktop-only">Quality Assurance Engineer at Worth AI</p>
+          <p class="meta desktop-only hero-anim hero-anim-5">Reno, NV • Remote</p>
+          <p class="meta desktop-only hero-anim hero-anim-6">Quality Assurance Engineer at Worth AI</p>
 
           <!-- Mobile: show focus areas beneath hero copy -->
-          <div class="panel mobile-only">
+          <div class="panel mobile-only hero-anim hero-anim-5">
             <h2 class="panel-title">Focus Areas</h2>
             <ul class="bullets">
               <li>Automation that supports fast releases (Playwright, Cypress)</li>
@@ -200,106 +204,116 @@
       <!-- EXPERIENCE -->
       <section id="experience" class="section reveal">
         <div class="section-head">
-          <h2>Experience</h2>
+          <div class="section-title-row">
+            <span class="section-dot" aria-hidden="true"></span>
+            <h2>Experience</h2>
+          </div>
           <p class="muted">Highlights from roles where I owned testing, quality, and release readiness.</p>
         </div>
 
-        <article class="card">
-          <header class="card-head">
-            <div class="card-main">
-              <h3>Quality Assurance Engineer</h3>
-              <p class="card-meta">Worth AI • Remote • Oct 2025 – Present</p>
-            </div>
-            <div class="card-side" aria-hidden="true">
-              <img class="company-logo" src="./assets/worth-logo.png" alt="" />
-            </div>
-          </header>
-          <ul class="bullets">
-            <li>
-              Own release confidence across multiple product areas through risk-based testing and tight feedback loops
-              with engineering and product.
-            </li>
-            <li>Build and maintain Playwright automation for critical workflows and integrate checks into CI to reduce regressions.</li>
-            <li>Validate complex onboarding and decisioning behavior across UI and APIs using Postman and data-level verification.</li>
-            <li>Drive pragmatic QA improvements: regression coverage, test organization, and clearer defect reporting.</li>
-          </ul>
-        </article>
+        <div class="timeline" aria-label="Experience timeline">
+          <article class="card timeline-card">
+            <header class="card-head">
+              <div class="card-main">
+                <h3>Quality Assurance Engineer</h3>
+                <p class="card-meta">
+                  <span class="meta-accent">Worth AI</span> • Remote • Oct 2025 – Present
+                </p>
+              </div>
+              <div class="card-side" aria-hidden="true">
+                <img class="company-logo company-logo--hover" src="./assets/worth-logo.png" alt="" />
+              </div>
+            </header>
+            <ul class="bullets">
+              <li>
+                Improve release confidence across multiple product areas through risk-based testing and tight feedback loops
+                with engineering and product.
+              </li>
+              <li>Build and maintain Playwright automation for critical workflows and integrate checks into CI to reduce regressions.</li>
+              <li>Validate complex onboarding and decisioning behavior across UI and APIs using Postman and data-level verification.</li>
+              <li>Drive pragmatic QA improvements: regression coverage, test organization, and clearer defect reporting.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <header class="card-head">
-            <div class="card-main">
-              <h3>QA Automation Engineer</h3>
-              <p class="card-meta">Castiron • Remote • Aug 2022 – Sep 2025</p>
-            </div>
-            <div class="card-side" aria-hidden="true">
-              <img class="company-logo" src="./assets/castiron-logo.jpg" alt="" />
-            </div>
-          </header>
-          <ul class="bullets">
-            <li>Developed and maintained automated UI and API test coverage using Playwright for key workflows across customer-facing web applications.</li>
-            <li>Integrated automated checks into GitHub Actions to support frequent deployments and reduce manual effort.</li>
-            <li>Executed exploratory and regression testing for high-risk features requiring broader coverage.</li>
-            <li>Partnered with engineering and design to clarify edge cases and reduce ambiguity in requirements.</li>
-          </ul>
-        </article>
+          <article class="card timeline-card">
+            <header class="card-head">
+              <div class="card-main">
+                <h3>QA Automation Engineer</h3>
+                <p class="card-meta"><span class="meta-accent">Castiron</span> • Remote • Aug 2022 – Sep 2025</p>
+              </div>
+              <div class="card-side" aria-hidden="true">
+                <img class="company-logo company-logo--hover" src="./assets/castiron-logo.jpg" alt="" />
+              </div>
+            </header>
+            <ul class="bullets">
+              <li>Developed and maintained automated UI and API test coverage using Playwright for key workflows across customer-facing web applications.</li>
+              <li>Integrated automated checks into GitHub Actions to support frequent deployments and reduce manual effort.</li>
+              <li>Executed exploratory and regression testing for high-risk features requiring broader coverage.</li>
+              <li>Partnered with engineering and design to clarify edge cases and reduce ambiguity in requirements.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <header class="card-head">
-            <div class="card-main">
-              <h3>Quality Assurance Engineer</h3>
-              <p class="card-meta">Bottomline Technologies • Remote • Feb 2022 – Jul 2022</p>
-            </div>
-            <div class="card-side" aria-hidden="true">
-              <img class="company-logo" src="./assets/bottomline-logo.png" alt="" />
-            </div>
-          </header>
-          <ul class="bullets">
-            <li>Built Cypress tests to establish baseline coverage for high-priority workflows in a legacy payments platform.</li>
-            <li>Defined coverage and ran manual tests validating UI behavior and backend data through API calls.</li>
-            <li>Led sprint planning and standups while managing test execution and defect triage.</li>
-          </ul>
-        </article>
+          <article class="card timeline-card">
+            <header class="card-head">
+              <div class="card-main">
+                <h3>Quality Assurance Engineer</h3>
+                <p class="card-meta"><span class="meta-accent">Bottomline Technologies</span> • Remote • Feb 2022 – Jul 2022</p>
+              </div>
+              <div class="card-side" aria-hidden="true">
+                <img class="company-logo company-logo--hover" src="./assets/bottomline-logo.png" alt="" />
+              </div>
+            </header>
+            <ul class="bullets">
+              <li>Built Cypress tests to establish baseline coverage for high-priority workflows in a legacy payments platform.</li>
+              <li>Defined coverage and ran manual tests validating UI behavior and backend data through API calls.</li>
+              <li>Led sprint planning and standups while managing test execution and defect triage.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <header class="card-head">
-            <div class="card-main">
-              <h3>Software QA Lead</h3>
-              <p class="card-meta">TrainerRoad • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
-            </div>
-            <div class="card-side" aria-hidden="true">
-              <img class="company-logo" src="./assets/trainerroad-logo.png" alt="" />
-            </div>
-          </header>
-          <ul class="bullets">
-            <li>Managed QA across web, desktop, and mobile platforms, leading a team of 10 through weekly release cycles.</li>
-            <li>Migrated 500+ test cases from spreadsheets to TestRail and standardized test structure.</li>
-            <li>Guided transition from GitHub to Jira, reducing triage time by 30%.</li>
-            <li>Expanded E2E coverage using Cypress, Detox, and Selenium.</li>
-          </ul>
-        </article>
+          <article class="card timeline-card">
+            <header class="card-head">
+              <div class="card-main">
+                <h3>Software QA Lead</h3>
+                <p class="card-meta"><span class="meta-accent">TrainerRoad</span> • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
+              </div>
+              <div class="card-side" aria-hidden="true">
+                <img class="company-logo company-logo--hover" src="./assets/trainerroad-logo.png" alt="" />
+              </div>
+            </header>
+            <ul class="bullets">
+              <li>Managed QA across web, desktop, and mobile platforms, leading a team of 10 through weekly release cycles.</li>
+              <li>Migrated 500+ test cases from spreadsheets to TestRail and standardized test structure.</li>
+              <li>Guided transition from GitHub to Jira, reducing triage time by 30%.</li>
+              <li>Expanded E2E coverage using Cypress, Detox, and Selenium.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <header class="card-head">
-            <div class="card-main">
-              <h3>Software QA Analyst</h3>
-              <p class="card-meta">TrainerRoad • Reno, NV • Sep 2017 – Apr 2019</p>
-            </div>
-            <div class="card-side" aria-hidden="true">
-              <img class="company-logo" src="./assets/trainerroad-logo.png" alt="" />
-            </div>
-          </header>
-          <ul class="bullets">
-            <li>Created and executed manual test cases across iOS, Android, Windows, Mac, and web.</li>
-            <li>Validated features against specs and surfaced issues early through exploratory testing.</li>
-            <li>Maintained test data, tracked bugs, monitored builds, and ran basic SQL/API checks.</li>
-          </ul>
-        </article>
+          <article class="card timeline-card">
+            <header class="card-head">
+              <div class="card-main">
+                <h3>Software QA Analyst</h3>
+                <p class="card-meta"><span class="meta-accent">TrainerRoad</span> • Reno, NV • Sep 2017 – Apr 2019</p>
+              </div>
+              <div class="card-side" aria-hidden="true">
+                <img class="company-logo company-logo--hover" src="./assets/trainerroad-logo.png" alt="" />
+              </div>
+            </header>
+            <ul class="bullets">
+              <li>Created and executed manual test cases across iOS, Android, Windows, Mac, and web.</li>
+              <li>Validated features against specs and surfaced issues early through exploratory testing.</li>
+              <li>Maintained test data, tracked bugs, monitored builds, and ran basic SQL/API checks.</li>
+            </ul>
+          </article>
+        </div>
       </section>
 
       <!-- SKILLS -->
       <section id="skills" class="section reveal">
         <div class="section-head">
-          <h2>Skills</h2>
+          <div class="section-title-row">
+            <span class="section-dot" aria-hidden="true"></span>
+            <h2>Skills</h2>
+          </div>
           <p class="muted">Tools and practices I reach for in day-to-day QA work.</p>
         </div>
 
@@ -313,7 +327,9 @@
           <div class="tile">
             <h3 class="tile-title">Testing</h3>
             <p class="tile-sub">How I approach coverage, risk, and validation.</p>
-            <p class="tile-body">Exploratory testing, regression testing, risk-based testing, cross-platform testing, test planning</p>
+            <p class="tile-body">
+              Exploratory testing, regression testing, risk-based testing, cross-platform testing, test planning, release readiness
+            </p>
           </div>
 
           <div class="tile">
@@ -333,7 +349,10 @@
       <!-- PROJECTS -->
       <section id="projects" class="section reveal">
         <div class="section-head">
-          <h2>Projects</h2>
+          <div class="section-title-row">
+            <span class="section-dot" aria-hidden="true"></span>
+            <h2>Projects</h2>
+          </div>
           <p class="muted">Frameworks I implemented to improve coverage and release confidence.</p>
         </div>
 
@@ -341,7 +360,7 @@
           <header class="card-head">
             <div class="card-main">
               <h3>Playwright E2E Framework</h3>
-              <p class="card-meta">Castiron • End-to-end automation foundation for critical workflows</p>
+              <p class="card-meta"><span class="meta-accent">Castiron</span> • End-to-end automation foundation for critical workflows</p>
             </div>
             <div class="card-side" aria-hidden="true">
               <img class="logo" src="./assets/playwright-logo.png" alt="" />
@@ -350,17 +369,24 @@
 
           <div class="project-body">
             <div class="project-block">
-              <div class="project-label">What I built</div>
-              <ul class="bullets compact">
-                <li>Designed and implemented a Playwright-based E2E framework covering high-risk user journeys.</li>
-                <li>Integrated tests into CI to catch regressions before release.</li>
-                <li>Established patterns for maintainable, scalable test development.</li>
-              </ul>
+              <div class="project-label">Outcome</div>
+              <p class="impact"><strong>Impact:</strong> Enabled CI gating and reduced manual regression effort across releases.</p>
             </div>
 
             <div class="project-block">
-              <div class="project-label">Outcome</div>
-              <p class="impact"><strong>Impact:</strong> Enabled CI gating and reduced manual regression effort across releases.</p>
+              <div class="project-label">What I built</div>
+              <ul class="bullets compact project-list">
+                <li>Designed and implemented a Playwright-based E2E framework covering high-risk user journeys.</li>
+                <li>Integrated tests into CI to catch regressions before release.</li>
+
+                <li class="project-more is-hidden">
+                  Established patterns for maintainable, scalable test development.
+                </li>
+              </ul>
+
+              <button class="project-toggle" type="button" aria-expanded="false">
+                Show more
+              </button>
             </div>
 
             <div class="tags" aria-label="Project technologies">
@@ -376,7 +402,7 @@
           <header class="card-head">
             <div class="card-main">
               <h3>Cypress UI Testing Framework</h3>
-              <p class="card-meta">Bottomline • Baseline automation for a legacy payments platform</p>
+              <p class="card-meta"><span class="meta-accent">Bottomline</span> • Baseline automation for a legacy payments platform</p>
             </div>
             <div class="card-side" aria-hidden="true">
               <img class="logo" src="./assets/cypress-logo.png" alt="" />
@@ -385,17 +411,24 @@
 
           <div class="project-body">
             <div class="project-block">
-              <div class="project-label">What I built</div>
-              <ul class="bullets compact">
-                <li>Introduced Cypress to establish baseline E2E coverage for critical workflows.</li>
-                <li>Partnered with engineering to define test strategy and ownership.</li>
-                <li>Improved visibility into UI and API failures during releases.</li>
-              </ul>
+              <div class="project-label">Outcome</div>
+              <p class="impact"><strong>Impact:</strong> Increased confidence in releases and reduced late-cycle defects.</p>
             </div>
 
             <div class="project-block">
-              <div class="project-label">Outcome</div>
-              <p class="impact"><strong>Impact:</strong> Increased confidence in releases and reduced late-cycle defects.</p>
+              <div class="project-label">What I built</div>
+              <ul class="bullets compact project-list">
+                <li>Introduced Cypress to establish baseline E2E coverage for critical workflows.</li>
+                <li>Partnered with engineering to define test strategy and ownership.</li>
+
+                <li class="project-more is-hidden">
+                  Improved visibility into UI and API failures during releases.
+                </li>
+              </ul>
+
+              <button class="project-toggle" type="button" aria-expanded="false">
+                Show more
+              </button>
             </div>
 
             <div class="tags" aria-label="Project technologies">
@@ -411,7 +444,10 @@
       <!-- CONTACT -->
       <section id="contact" class="section reveal">
         <div class="section-head">
-          <h2>Contact</h2>
+          <div class="section-title-row">
+            <span class="section-dot" aria-hidden="true"></span>
+            <h2>Contact</h2>
+          </div>
           <p class="muted">Send a message and I will get back to you.</p>
         </div>
 
@@ -427,12 +463,14 @@
             <div class="form-grid">
               <div class="field">
                 <label for="name">Name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required / aria-describedby="name-error">
+                <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error" />
+                <p id="name-error" class="sr-only" role="alert"></p>
               </div>
 
               <div class="field">
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required / aria-describedby="email-error">
+                <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error" />
+                <p id="email-error" class="sr-only" role="alert"></p>
               </div>
 
               <div class="field field-full">
@@ -487,6 +525,22 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
+      // Projects: progressive disclosure
+      const toggles = document.querySelectorAll(".project-toggle");
+      toggles.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".project");
+          if (!card) return;
+
+          const moreItems = card.querySelectorAll(".project-more");
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+
+          moreItems.forEach((li) => li.classList.toggle("is-hidden", expanded));
+          btn.setAttribute("aria-expanded", expanded ? "false" : "true");
+          btn.textContent = expanded ? "Show more" : "Show less";
+        });
+      });
+
       // Form: prevent double submit + show status (and spinner)
       const form = document.getElementById("contact-form");
       const statusEl = document.getElementById("form-status");
@@ -494,11 +548,25 @@
       const btnText = submitBtn.querySelector(".btn-text");
 
       let submitting = false;
+      let clearStatusTimer = null;
 
       function setStatus(message, kind) {
         statusEl.textContent = message || "";
         statusEl.classList.remove("ok", "error");
+        form.classList.remove("sent");
+
         if (kind) statusEl.classList.add(kind);
+        if (kind === "ok") form.classList.add("sent");
+
+        // Auto-clear success message after a bit (keeps UI feeling "done")
+        if (clearStatusTimer) window.clearTimeout(clearStatusTimer);
+        if (kind === "ok") {
+          clearStatusTimer = window.setTimeout(() => {
+            statusEl.textContent = "";
+            statusEl.classList.remove("ok");
+            form.classList.remove("sent");
+          }, 6500);
+        }
       }
 
       function setSubmitting(on) {
@@ -584,7 +652,7 @@
           if (response.ok) {
             form.reset();
             clearFieldErrors();
-            setStatus("Thanks. Your message was sent.", "ok");
+            setStatus("✓ Thanks. Your message was sent.", "ok");
           } else {
             setStatus("Something went wrong. Please try again, or email me directly.", "error");
           }
