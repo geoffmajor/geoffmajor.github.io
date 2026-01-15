@@ -681,66 +681,111 @@
       );
       reveals.forEach((el) => io.observe(el));
 
-      // Header nav: highlight active section (predictable scroll-based)
+      // Header nav: highlight active section (stable + predictable)
       const headerEl = document.getElementById("site-header");
 
       const headerNavLinks = Array.from(document.querySelectorAll(".nav a"))
         .filter((a) => a.getAttribute("href")?.startsWith("#"))
         .filter((a) => !a.classList.contains("nav-cta"));
 
-      const sectionIds = headerNavLinks
-        .map((a) => a.getAttribute("href").slice(1))
-        .filter(Boolean);
-
-      const sections = sectionIds
-        .map((id) => document.getElementById(id))
+      const sections = headerNavLinks
+        .map((a) => document.getElementById(a.getAttribute("href").slice(1)))
         .filter(Boolean);
 
       function setActiveNav(id) {
         headerNavLinks.forEach((a) => {
           const match = id && a.getAttribute("href") === `#${id}`;
           a.classList.toggle("is-active", match);
-          // aria-current should be "page" or "true"; "page" is more standard
           if (match) a.setAttribute("aria-current", "page");
           else a.removeAttribute("aria-current");
         });
       }
 
+      function syncHeaderHeightVar() {
+        if (!headerEl) return;
+        // Keep CSS scroll offsets in sync with the actual sticky header height
+        document.documentElement.style.setProperty("--header-h", `${Math.ceil(headerEl.getBoundingClientRect().height)}px`);
+      }
+
       function getHeaderOffset() {
-        // Use actual rendered header height (works on mobile when header becomes taller)
         return headerEl ? Math.ceil(headerEl.getBoundingClientRect().height) : 0;
       }
 
+      // “Activation line” (below the header). Bigger = activates next section earlier.
+      function getActivationOffset() {
+        const header = getHeaderOffset();
+        const extra = Math.min(160, Math.round(window.innerHeight * 0.25));
+        return header + extra;
+      }
+
+      function getActiveSectionId() {
+        if (!sections.length) return null;
+
+        const offset = getActivationOffset();
+
+        // Bottom of page: force last section active
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        if (nearBottom) return sections[sections.length - 1].id;
+
+        // Pick the section whose bounds contain the activation line
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const rect = sections[i].getBoundingClientRect();
+          if (rect.top <= offset && rect.bottom > offset) return sections[i].id;
+        }
+
+        // Above first tracked section
+        return null;
+      }
+
+      // Lock active state during programmatic (nav) scroll so it doesn’t flicker
+      let lockedId = null;
+      let lockUntil = 0;
+
+      function lockActive(id, ms = 900) {
+        lockedId = id;
+        lockUntil = performance.now() + ms;
+        setActiveNav(id);
+      }
+
+      function clearLock() {
+        lockedId = null;
+        lockUntil = 0;
+      }
+
       function updateActiveFromScroll() {
-        if (!sections.length) return;
-
-        const offset = getHeaderOffset() + 20; // little breathing room below sticky header
-
-        // If user is near the bottom, force Contact active (fixes "never activates Contact")
-        const nearBottom =
-          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-        if (nearBottom) {
-          setActiveNav(sections[sections.length - 1].id);
+        const now = performance.now();
+        if (lockedId && now < lockUntil) {
+          // Stay locked unless user interrupted
+          setActiveNav(lockedId);
           return;
         }
 
-        // Pick the last section whose top has crossed the offset line
-        let currentId = null;
-        for (const section of sections) {
-          const top = section.getBoundingClientRect().top;
-          if (top <= offset) currentId = section.id;
-        }
+        lockedId = null;
+        lockUntil = 0;
 
-        // If we are above the first section, clear active state (fixes "Experience always active on load")
-        setActiveNav(currentId);
+        setActiveNav(getActiveSectionId());
       }
 
-      // Throttle with requestAnimationFrame so it stays smooth
+      // Clear the lock if the user manually scrolls/interrupts
+      ["wheel", "touchstart", "keydown"].forEach((evt) => {
+        window.addEventListener(evt, clearLock, { passive: true });
+      });
+
+      // On nav click: set active immediately + lock while smooth scroll runs
+      headerNavLinks.forEach((a) => {
+        a.addEventListener("click", () => {
+          const id = a.getAttribute("href").slice(1);
+          if (id) lockActive(id, 900);
+        });
+      });
+
+      // Throttle with requestAnimationFrame
       let ticking = false;
       function onScrollOrResize() {
         if (ticking) return;
         ticking = true;
         window.requestAnimationFrame(() => {
+          syncHeaderHeightVar();
           updateActiveFromScroll();
           ticking = false;
         });
@@ -749,9 +794,12 @@
       window.addEventListener("scroll", onScrollOrResize, { passive: true });
       window.addEventListener("resize", onScrollOrResize);
 
-      // Run once on load (and again after hash navigation, if any)
+      syncHeaderHeightVar();
       updateActiveFromScroll();
-      window.setTimeout(updateActiveFromScroll, 50);
+      window.setTimeout(() => {
+        syncHeaderHeightVar();
+        updateActiveFromScroll();
+      }, 50);
     </script>
   </body>
 </html>
