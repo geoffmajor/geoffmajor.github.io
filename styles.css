@@ -602,7 +602,7 @@ h1 {
 
 /* Site-level footnote (closing aside) */
 .site-footnote {
-  margin: 28px auto 0;
+  margin: 28px 0 0;
   padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 
