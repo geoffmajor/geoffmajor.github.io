@@ -600,6 +600,21 @@ h1 {
   font-weight: 750;
 }
 
+/* Projects footnote (quiet aside) */
+.projects-footnote {
+  margin: 14px 0 0;
+  max-width: 72ch;
+  font-size: 13.5px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Optional: add a subtle separator without feeling like a section */
+.projects-footnote {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 /* Buttons */
 .button {
   display: inline-flex;
