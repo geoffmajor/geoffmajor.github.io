@@ -66,8 +66,27 @@
 
     function focusFirstInvalid(fieldId) {
       if (!fieldId) return;
+      
       const el = form.querySelector("#" + fieldId);
-      if (el) el.focus();
+      if (!el) return;
+
+      // Calculate the position to scroll to
+      const header = document.getElementById("site-header");
+      const headerOffset = header ? header.getBoundingClientRect().height : 0;
+      const extraPadding = 20; // Extra breathing room
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset - extraPadding;
+
+      // Smooth scroll (respecting user preference)
+      const shouldScrollSmooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: shouldScrollSmooth ? "smooth" : "auto"
+      });
+
+      // Focus without disrupting the scroll (prevent jump)
+      el.focus({ preventScroll: true });
     }
 
     function isValidEmail(value) {
