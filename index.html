@@ -93,7 +93,8 @@
         <div class="hero-copy">
           <!-- Mobile-only profile strip -->
           <div class="profile-strip" aria-label="Profile">
-            <img class="avatar-small" src="./assets/avatar.png" alt="Portrait of Geoffrey Major" width="56" height="56" decoding="async" />
+            <link rel="preload" as="image" href="./assets/avatar.webp" />
+            <img class="avatar-small" src="./assets/avatar.webp" alt="Portrait of Geoffrey Major" width="56" height="56" decoding="async" fetchpriority="high" />
             <div class="profile-strip-text">
               <div class="profile-name">Geoffrey Major</div>
 
@@ -107,7 +108,7 @@
                   rel="noreferrer"
                   aria-label="Open GitHub profile in a new tab"
                 >
-                  <img class="social-icon" src="./assets/github-logo.png" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
+                  <img class="social-icon" src="./assets/github-logo.webp" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
                 </a>
 
                 <a
@@ -117,7 +118,7 @@
                   rel="noreferrer"
                   aria-label="Open LinkedIn profile in a new tab"
                 >
-                  <img class="social-icon" src="./assets/linkedin-logo.png" alt="" aria-hidden="true" height="28" loading="lazy" decoding="async" />
+                  <img class="social-icon" src="./assets/linkedin-logo.webp" alt="" aria-hidden="true" height="28" loading="lazy" decoding="async" />
                 </a>
               </div>
 
@@ -157,7 +158,7 @@
               rel="noreferrer"
               aria-label="Open GitHub profile in a new tab"
             >
-              <img class="social-icon" src="./assets/github-logo.png" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
+              <img class="social-icon" src="./assets/github-logo.webp" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
             </a>
 
             <a
@@ -167,7 +168,7 @@
               rel="noreferrer"
               aria-label="Open LinkedIn profile in a new tab"
             >
-              <img class="social-icon" src="./assets/linkedin-logo.png" alt="" aria-hidden="true" height="28" loading="lazy" decoding="async" />
+              <img class="social-icon" src="./assets/linkedin-logo.webp" alt="" aria-hidden="true" height="28" loading="lazy" decoding="async" />
             </a>
           </div>
 
@@ -189,13 +190,15 @@
         <!-- Desktop-only aside -->
         <div class="hero-aside desktop-only" aria-labelledby="focus-areas-title">
           <div class="avatar-card">
+            <link rel="preload" as="image" href="./assets/avatar.webp" />
             <img
               class="avatar"
-              src="./assets/avatar.png"
+              src="./assets/avatar.webp"
               alt="Portrait of Geoffrey Major"
               width="560"
               height="560"
               decoding="async"
+              fetchpriority="high"
             />
           </div>
 
@@ -231,7 +234,7 @@
                 </p>
               </div>
               <div class="card-side" aria-hidden="true">
-                <img class="company-logo company-logo--hover" src="./assets/worth-logo.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                <img class="company-logo company-logo--hover" src="./assets/worth-logo.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
               </div>
             </header>
             <ul class="bullets">
@@ -252,7 +255,7 @@
                 <p class="card-meta"><span class="meta-accent">Castiron</span> • Remote • Aug 2022 – Sep 2025</p>
               </div>
               <div class="card-side" aria-hidden="true">
-                <img class="company-logo company-logo--hover" src="./assets/castiron-logo.jpg" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                <img class="company-logo company-logo--hover" src="./assets/castiron-logo.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
               </div>
             </header>
             <ul class="bullets">
@@ -270,7 +273,7 @@
                 <p class="card-meta"><span class="meta-accent">Bottomline Technologies</span> • Remote • Feb 2022 – Jul 2022</p>
               </div>
               <div class="card-side" aria-hidden="true">
-                <img class="company-logo company-logo--hover" src="./assets/bottomline-logo.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                <img class="company-logo company-logo--hover" src="./assets/bottomline-logo.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
               </div>
             </header>
             <ul class="bullets">
@@ -287,7 +290,7 @@
                 <p class="card-meta"><span class="meta-accent">TrainerRoad</span> • Reno, NV (Hybrid) • Apr 2019 – Feb 2022</p>
               </div>
               <div class="card-side" aria-hidden="true">
-                <img class="company-logo company-logo--hover" src="./assets/trainerroad-logo.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                <img class="company-logo company-logo--hover" src="./assets/trainerroad-logo.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
               </div>
             </header>
             <ul class="bullets">
@@ -305,7 +308,7 @@
                 <p class="card-meta"><span class="meta-accent">TrainerRoad</span> • Reno, NV • Sep 2017 – Apr 2019</p>
               </div>
               <div class="card-side" aria-hidden="true">
-                <img class="company-logo company-logo--hover" src="./assets/trainerroad-logo.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                <img class="company-logo company-logo--hover" src="./assets/trainerroad-logo.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
               </div>
             </header>
             <ul class="bullets">
@@ -376,7 +379,7 @@
               <p class="card-meta"><span class="meta-accent">Castiron</span> • End-to-end automation foundation for critical workflows</p>
             </div>
             <div class="card-side" aria-hidden="true">
-              <img class="logo" src="./assets/playwright-logo.png" alt="" width="34" height="34" loading="lazy" decoding="async" />
+              <img class="logo" src="./assets/playwright-logo.webp" alt="" width="34" height="34" loading="lazy" decoding="async" />
             </div>
           </header>
 
@@ -416,7 +419,7 @@
               <p class="card-meta"><span class="meta-accent">Bottomline</span> • Baseline automation for a legacy payments platform</p>
             </div>
             <div class="card-side" aria-hidden="true">
-              <img class="logo" src="./assets/cypress-logo.png" alt="" width="34" height="34" loading="lazy" decoding="async" />
+              <img class="logo" src="./assets/cypress-logo.webp" alt="" width="34" height="34" loading="lazy" decoding="async" />
             </div>
           </header>
 
@@ -527,7 +530,7 @@
               rel="noreferrer"
               aria-label="Open GitHub profile in a new tab"
             >
-              <img class="social-icon" src="./assets/github-logo.png" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
+              <img class="social-icon" src="./assets/github-logo.webp" alt="" aria-hidden="true" width="28" height="28" loading="lazy" decoding="async" />
             </a>
 
             <a
@@ -537,7 +540,7 @@
               rel="noreferrer"
               aria-label="Open LinkedIn profile in a new tab"
             >
-              <img class="social-icon" src="./assets/linkedin-logo.png" alt="" aria-hidden="true" height="28" loading="lazy" decoding="async" />
+              <img class="social-icon" src="./assets/linkedin-logo.webp" alt="" aria-hidden="true" height="28" loading="lazy" decoding="async" />
             </a>
           </div>
 
