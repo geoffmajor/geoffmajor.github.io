@@ -503,6 +503,11 @@ button.button { color: var(--text); }
   transform: translateY(2px);
 }
 
+/* Desktop: give LinkedIn icon a little extra breathing room from Resume */
+.desktop-only.social-link {
+  margin-left: 6px;
+}
+
 /* Contact Form */
 .contact { margin-top: 12px; }
 
