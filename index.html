@@ -5,6 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Marks JS availability so CSS can progressively enhance (no hidden content if JS is blocked). -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+
         <meta name="theme-color" content="#0b0d10" />
 <title>Geoffrey Major | Quality Assurance Engineer</title>
     <meta
@@ -18,6 +23,9 @@
     <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="./assets/favicon-gm.png" />
+
+    <!-- Preload the hero avatar (must live in <head> to be honored consistently) -->
+    <link rel="preload" as="image" href="./assets/avatar.webp" fetchpriority="high" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -219,7 +227,6 @@
         <div class="hero-copy">
           <!-- Mobile-only profile strip -->
           <div class="profile-strip" aria-label="Profile">
-            <link rel="preload" as="image" href="./assets/avatar.webp" />
             <img class="avatar-small" src="./assets/avatar.webp" alt="Portrait of Geoffrey Major" width="56" height="56" decoding="async" fetchpriority="high" />
             <div class="profile-strip-text">
               <div class="profile-name">Geoffrey Major</div>
@@ -316,7 +323,6 @@
         <!-- Desktop-only aside -->
         <div class="hero-aside desktop-only" aria-labelledby="focus-areas-title">
           <div class="avatar-card">
-            <link rel="preload" as="image" href="./assets/avatar.webp" />
             <img
               class="avatar"
               src="./assets/avatar.webp"

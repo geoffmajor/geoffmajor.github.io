@@ -848,13 +848,22 @@ input:focus, textarea:focus {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Reveal on scroll */
+/* Reveal on scroll (progressive enhancement)
+   - Default: visible (so content is not hidden if JS is blocked)
+   - With JS: start hidden and reveal via IntersectionObserver
+*/
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 420ms ease, transform 420ms ease;
 }
-.reveal.in { opacity: 1; transform: translateY(0); }
+
+.js .reveal.in { opacity: 1; transform: translateY(0); }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -862,6 +871,16 @@ input:focus, textarea:focus {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Ensure content does not stay hidden when animations are disabled */
+  .hero-anim {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
