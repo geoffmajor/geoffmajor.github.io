@@ -26,11 +26,6 @@
 section[id] {
   scroll-margin-top: calc(var(--header-h) + 8px);
 }
-@media (max-width: 700px) {
-  section[id] {
-    scroll-margin-top: 92px;
-  }
-}
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
