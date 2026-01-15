@@ -472,7 +472,7 @@ button.button { color: var(--text); }
 }
 
 .social-icon {
-  height: 28px;
+  height: 22px;
   width: auto;
   display: block;
   opacity: 0.9;
