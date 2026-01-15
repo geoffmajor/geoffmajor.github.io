@@ -841,7 +841,49 @@ input:focus, textarea:focus {
   align-items: center;
 }
 
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-social .social-icon {
+  height: 20px;
+  opacity: 0.75;
+}
+
+.footer-social .social-link:hover .social-icon {
+  opacity: 1;
+}
+
 .sep { opacity: 0.75; }
+
+/* Mobile: stack footer cleanly */
+@media (max-width: 700px) {
+  .footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .footer-right {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
 
 /* Subtle polish */
 .card, .tile, .panel, .avatar, .company-logo {
