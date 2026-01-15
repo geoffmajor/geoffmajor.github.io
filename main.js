@@ -478,7 +478,7 @@
     let activeFileIndex = 0;
     let isRunning = false;
 
-    function renderTabs() {
+    function createTabs() {
       tabContainer.innerHTML = "";
       
       demoData.files.forEach((file, index) => {
@@ -490,11 +490,20 @@
         
         btn.addEventListener("click", () => {
           activeFileIndex = index;
-          renderTabs();
+          updateTabClasses();
           renderCode();
         });
         
         tabContainer.appendChild(btn);
+      });
+    }
+
+    function updateTabClasses() {
+      const tabs = tabContainer.querySelectorAll(".demo-tab");
+      tabs.forEach((tab, index) => {
+        const isActive = index === activeFileIndex;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", isActive);
       });
     }
 
@@ -577,9 +586,9 @@
     }
 
     runBtn.addEventListener("click", runTerminal);
-
+    
     // Init
-    renderTabs();
+    createTabs();
     renderCode();
   })();
 
