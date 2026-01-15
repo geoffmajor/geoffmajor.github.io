@@ -659,6 +659,7 @@ button.button { color: var(--text); }
   width: auto;
   display: block;
   opacity: 0.9;
+  object-fit: contain;
 }
 
 .social-link:hover {
