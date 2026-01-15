@@ -451,14 +451,14 @@ h1 {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  background: var(--accent-2);
-  box-shadow: 0 0 18px rgba(140, 115, 255, 0.22);
-  opacity: 0.95;
+  background: rgba(140, 115, 255, 0.72);
+  box-shadow: 0 0 12px rgba(140, 115, 255, 0.16);
+  opacity: 0.9;
 }
 
 .timeline-card:hover::before {
-  background: var(--accent);
-  box-shadow: 0 0 18px rgba(93, 214, 255, 0.25);
+  background: rgba(93, 214, 255, 0.85);
+  box-shadow: 0 0 12px rgba(93, 214, 255, 0.18);
 }
 
 /* Project card accent */
@@ -538,6 +538,34 @@ h1 {
   line-height: 1.45;
 }
 
+.project-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.impact-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(140, 115, 255, 0.18);
+  background: rgba(140, 115, 255, 0.065);
+  color: rgba(233, 237, 242, 0.78);
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .project-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -555,34 +583,6 @@ h1 {
   color: var(--muted);
   font-size: 13px;
   font-weight: 750;
-}
-
-.project-title-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.impact-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(140, 115, 255, 0.22);
-  background: rgba(140, 115, 255, 0.08);
-  color: rgba(233, 237, 242, 0.82);
-  font-size: 12.5px;
-  font-weight: 850;
-  white-space: nowrap;
-}
-
-@media (max-width: 700px) {
-  .project-title-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
 }
 
 /* Buttons */
@@ -849,9 +849,9 @@ input:focus, textarea:focus {
 }
 
 .card:hover, .tile:hover, .panel:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.40);
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34);
 }
 
 .card.project:hover { border-color: rgba(93, 214, 255, 0.35); }

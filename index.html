@@ -131,7 +131,8 @@
 
           <p class="lead hero-anim hero-anim-3">
             QA engineer with 8+ years of experience across manual testing, exploratory testing, and UI/API automation for
-            web, mobile, and desktop applications. I focus on <span class="accent-underline accent-underline--soft">pragmatic testing</span> strategies that reduce
+            web, mobile, and desktop applications. I focus on
+            <span class="accent-underline accent-underline--soft">pragmatic testing</span> strategies that reduce
             regressions, clarify requirements, and keep releases moving.
           </p>
 
@@ -141,9 +142,9 @@
               href="./assets/Major_Geoffrey_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              aria-label="View resume PDF in a new tab"
+              aria-label="Open resume PDF in a new tab"
             >
-              View Resume
+              Resume
             </a>
 
             <!-- Desktop-only LinkedIn and GitHub icons beside resume button -->
@@ -208,7 +209,7 @@
             <span class="section-dot" aria-hidden="true"></span>
             <h2>Experience</h2>
           </div>
-          <p class="muted">Highlights from roles where I owned testing, quality, and release readiness.</p>
+          <p class="muted">Highlights from roles where I led testing, quality, and release readiness.</p>
         </div>
 
         <div class="timeline" aria-label="Experience timeline">
@@ -535,7 +536,7 @@
         if (kind === "ok") form.classList.add("sent");
 
         // Auto-clear success message after a bit (keeps UI feeling "done")
-        if (clearStatusTimer) window.clearTimeout(clearStatusTimer);
+        if (clearStatusTimer) window.setTimeout(() => {});
         if (kind === "ok") {
           clearStatusTimer = window.setTimeout(() => {
             statusEl.textContent = "";
