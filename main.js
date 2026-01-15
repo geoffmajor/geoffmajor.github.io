@@ -486,6 +486,7 @@
         btn.className = `demo-tab ${index === activeFileIndex ? "active" : ""}`;
         btn.setAttribute("role", "tab");
         btn.setAttribute("aria-selected", index === activeFileIndex);
+        btn.setAttribute("aria-controls", "code-panel");
         btn.textContent = file.label;
         
         btn.addEventListener("click", () => {
@@ -529,8 +530,9 @@
       isRunning = true;
       runBtn.disabled = true;
       
-      const btnText = runBtn.querySelector(".btn-text-mobile");
-      if (btnText) btnText.textContent = "Running...";
+      const btnLabel = runBtn.querySelector(".btn-label");
+      if (btnLabel) btnLabel.textContent = "Running...";
+      runBtn.setAttribute("aria-label", "Running suite...");
 
       // Auto-scroll to terminal on mobile so user sees the action
       if (window.innerWidth < 768) {
@@ -582,7 +584,9 @@
 
       isRunning = false;
       runBtn.disabled = false;
-      if (btnText) btnText.textContent = "Run Again";
+      runBtn.disabled = false;
+      runBtn.setAttribute("aria-label", "Run test suite");
+      if (btnLabel) btnLabel.textContent = "Run Again";
     }
 
     runBtn.addEventListener("click", runTerminal);

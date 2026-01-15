@@ -1299,7 +1299,7 @@ input:focus, textarea:focus {
 
 /* Mobile responsive adjustments */
 @media (max-width: 500px) {
-  .btn-text-mobile {
+  .btn-label {
     display: none;
   }
   .demo-actions .button {
