@@ -24,11 +24,11 @@
 
 /* Anchor offset for sticky header */
 section[id] {
-  scroll-margin-top: calc(var(--header-h) + 18px);
+  scroll-margin-top: calc(var(--header-h) + 8px);
 }
 @media (max-width: 700px) {
   section[id] {
-    scroll-margin-top: 92px;
+    scroll-margin-top: 76px;
   }
 }
 
@@ -37,7 +37,6 @@ html, body { margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 14px);
 }
 
 body {
