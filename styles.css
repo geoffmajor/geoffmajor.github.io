@@ -1298,7 +1298,7 @@ input:focus, textarea:focus {
 }
 
 /* Mobile responsive adjustments */
-@media (max-width: 500px) {
+@media (max-width: 800px) {
   .btn-label {
     display: none;
   }
