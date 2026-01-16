@@ -218,7 +218,7 @@ p a:hover:not(.button):not(.social-link),
   overflow: hidden;
   user-select: none;
   pointer-events: none;
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .nav a:hover { color: var(--text); text-decoration: none; }
@@ -1073,7 +1073,7 @@ input:focus, textarea:focus {
 /* Active section in header nav (subtle) */
 .nav a.is-active {
   color: rgba(233, 237, 242, 0.92);
-  font-weight: 850;
+  font-weight: 700;
   text-decoration: none;
 }
 
