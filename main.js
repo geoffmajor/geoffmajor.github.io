@@ -334,11 +334,14 @@
 
   // Throttle with requestAnimationFrame
   let ticking = false;
-  function onScrollOrResize() {
+  function onScrollOrResize(e) {
     if (ticking) return;
     ticking = true;
     window.requestAnimationFrame(() => {
-      syncHeaderHeightVar();
+      // ONLY sync height on resize, not scroll (prevent jitter)
+      if (e && e.type === "resize") {
+        syncHeaderHeightVar();
+      }
       updateActiveFromScroll();
       ticking = false;
     });
@@ -353,6 +356,9 @@
     syncHeaderHeightVar();
     updateActiveFromScroll();
   }, 50);
+  window.setTimeout(() => {
+    syncHeaderHeightVar();
+  }, 300); // Final catch-all for lazy loads
 
   // --- Interactive Demo Logic ---
   (function initDemo() {

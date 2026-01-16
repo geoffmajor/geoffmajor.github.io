@@ -201,7 +201,26 @@ p a:hover:not(.button):not(.social-link),
   flex-wrap: wrap;
 }
 
-.nav a { color: var(--muted); }
+.nav a { 
+  color: var(--muted);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nav a::after {
+  content: attr(data-text);
+  content: attr(data-text) / "";
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  font-weight: 850;
+}
+
 .nav a:hover { color: var(--text); text-decoration: none; }
 
 .nav-cta {
@@ -924,6 +943,12 @@ input:focus, textarea:focus {
 
 .footer-inner { display: grid; gap: 10px; }
 
+.footer-nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .footer-nav a { color: rgba(233, 237, 242, 0.78); }
 .footer-nav a:hover { color: var(--text); text-decoration: none; }
 
@@ -1050,10 +1075,10 @@ input:focus, textarea:focus {
   color: rgba(233, 237, 242, 0.92);
   font-weight: 850;
   text-decoration: none;
-  position: relative;
 }
 
-.nav a.is-active::after {
+/* Underline for top nav only */
+.site-header .nav a.is-active::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1062,6 +1087,8 @@ input:focus, textarea:focus {
   height: 2px;
   border-radius: 999px;
   background: rgba(93, 214, 255, 0.45);
+  visibility: visible;
+  height: 2px;
 }
 
 /* Keep Resume CTA unchanged even if it somehow gets marked active */
