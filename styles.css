@@ -211,7 +211,6 @@ p a:hover:not(.button):not(.social-link),
 }
 
 .nav a::after {
-  content: attr(data-text);
   content: attr(data-text) / "";
   height: 0;
   visibility: hidden;
@@ -985,7 +984,6 @@ input:focus, textarea:focus {
 
 .footer-social .social-link:hover .social-icon { opacity: 1; }
 
-.sep { opacity: 0.75; }
 
 /* Mobile: stack footer cleanly */
 @media (max-width: 700px) {
@@ -1077,7 +1075,7 @@ input:focus, textarea:focus {
   text-decoration: none;
 }
 
-/* Underline for top nav only */
+/* Underline for active nav item in header */
 .site-header .nav a.is-active::after {
   content: "";
   position: absolute;
@@ -1088,7 +1086,6 @@ input:focus, textarea:focus {
   border-radius: 999px;
   background: rgba(93, 214, 255, 0.45);
   visibility: visible;
-  height: 2px;
 }
 
 /* Keep Resume CTA unchanged even if it somehow gets marked active */
@@ -1175,9 +1172,7 @@ input:focus, textarea:focus {
   }
 }
 
-/* Demo Card */
-/* Demo Card Structure (Project Card Context) */
-/* Demo Wrapper (nested in project body) */
+/* Interactive Demo: Code viewer and terminal simulation */
 .demo-wrapper {
   margin-top: 12px;
   border: 1px solid var(--line);

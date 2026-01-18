@@ -9,7 +9,7 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  // Contact form: prevent double submit + show status
+  // Contact form: validation, submission, and status handling
   (function initContactForm() {
     const form = document.getElementById("contact-form");
     const statusEl = document.getElementById("form-status");
@@ -220,7 +220,7 @@
     reveals.forEach((el) => io.observe(el));
   })();
 
-  // Header nav: highlight active section (stable + predictable)
+  // Header navigation: highlight active section based on scroll position
   const headerEl = document.getElementById("site-header");
 
   const headerNavLinks = Array.from(document.querySelectorAll(".nav a"))
@@ -253,7 +253,8 @@
     return headerEl ? Math.ceil(headerEl.getBoundingClientRect().height) : 0;
   }
 
-  // “Activation line” (below the header). Bigger = activates next section earlier.
+  // Calculate activation offset: point below header where section becomes active
+  // Larger offset = activates next section earlier
   function getActivationOffset() {
     const header = getHeaderOffset();
     const extra = Math.min(160, Math.round(window.innerHeight * 0.25));
@@ -289,7 +290,7 @@
     return lastPassed;
   }
 
-  // Lock active state during programmatic (nav) scroll so it doesn’t flicker
+  // Lock active state during programmatic navigation scroll to prevent flicker
   let lockedId = null;
   let lockUntil = 0;
 
@@ -332,7 +333,7 @@
     });
   });
 
-  // Throttle with requestAnimationFrame
+  // Throttle scroll/resize handlers using requestAnimationFrame
   let ticking = false;
   function onScrollOrResize(e) {
     if (ticking) return;
@@ -360,7 +361,7 @@
     syncHeaderHeightVar();
   }, 300); // Final catch-all for lazy loads
 
-  // --- Interactive Demo Logic ---
+  // Interactive demo: code viewer and terminal simulation
   (function initDemo() {
     const codeContentEl = document.getElementById("code-content");
     const runBtn = document.getElementById("run-test-btn");
@@ -369,7 +370,7 @@
 
     if (!codeContentEl || !runBtn || !termBody || !tabContainer) return;
 
-    // Single unified scenario
+    // Demo data: code files and terminal output simulation
     const demoData = {
       command: "npx playwright test auth.spec.ts",
       files: [
@@ -551,7 +552,7 @@
       codeContentEl.innerHTML = file.code.trim();
     }
 
-    // Terminal Animation
+    // Terminal animation: type text character by character
     async function typeText(text, element, delay = 30) {
       for (const char of text) {
         element.textContent += char;
@@ -621,7 +622,6 @@
       await addLine('<span class="term-prompt">$</span> <span class="term-cursor"></span>'); // Final prompt with cursor
 
       isRunning = false;
-      runBtn.disabled = false;
       runBtn.disabled = false;
       runBtn.setAttribute("aria-label", "Run test suite");
       if (btnLabel) btnLabel.textContent = "Run Again";
