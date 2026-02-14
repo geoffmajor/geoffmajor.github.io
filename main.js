@@ -1,22 +1,20 @@
-// main.js
-
 (() => {
   "use strict";
 
-  // Footer year
+  // Keep footer year current without manual edits.
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  // Contact form: validation, submission, and status handling
+  // Contact form: lightweight client-side validation + async submit.
   (function initContactForm() {
     const form = document.getElementById("contact-form");
     const statusEl = document.getElementById("form-status");
     const submitBtn = document.getElementById("submit-btn");
     const btnText = submitBtn ? submitBtn.querySelector(".btn-text") : null;
 
-    // If any critical element is missing, fail gracefully.
+    // Exit early if markup is incomplete.
     if (!form || !statusEl || !submitBtn || !btnText) return;
 
     let submitting = false;
@@ -30,7 +28,7 @@
       if (kind) statusEl.classList.add(kind);
       if (kind === "ok") form.classList.add("sent");
 
-      // Auto-clear success message after a bit (keeps UI feeling "done")
+      // Let success state linger briefly, then reset.
       if (clearStatusTimer) window.clearTimeout(clearStatusTimer);
       if (kind === "ok") {
         clearStatusTimer = window.setTimeout(() => {
@@ -70,14 +68,14 @@
       const el = form.querySelector("#" + fieldId);
       if (!el) return;
 
-      // Calculate the position to scroll to
+      // Scroll invalid field into view below sticky header.
       const header = document.getElementById("site-header");
       const headerOffset = header ? header.getBoundingClientRect().height : 0;
-      const extraPadding = 20; // Extra breathing room
+      const extraPadding = 20;
       const elementPosition = el.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - headerOffset - extraPadding;
 
-      // Smooth scroll (respecting user preference)
+      // Respect reduced motion preferences.
       const shouldScrollSmooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       window.scrollTo({
@@ -85,7 +83,6 @@
         behavior: shouldScrollSmooth ? "smooth" : "auto"
       });
 
-      // Focus without disrupting the scroll (prevent jump)
       el.focus({ preventScroll: true });
     }
 
@@ -93,12 +90,11 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     }
 
-    // If a field is currently invalid, re-check on input so errors clear immediately
+    // Clear field-level errors as the user fixes input.
     function maybeClearErrorOnInput(fieldId) {
       const field = form.querySelector("#" + fieldId);
       if (!field) return;
 
-      // Only do work if the field is currently marked invalid
       if (field.getAttribute("aria-invalid") !== "true") return;
 
       const value = field.value.trim();
@@ -109,7 +105,6 @@
         if (value) setFieldError(fieldId, "");
       }
 
-      // If the form-wide error banner is showing and all fields are now valid, clear it
       const anyInvalid = ["name", "email", "message"].some(
         (id) => form.querySelector("#" + id)?.getAttribute("aria-invalid") === "true"
       );
@@ -130,7 +125,6 @@
       const emailEl = form.querySelector("#email");
       const messageEl = form.querySelector("#message");
 
-      // If the DOM changes and fields go missing, bail out cleanly.
       if (!nameEl || !emailEl || !messageEl) {
         setStatus("Something went wrong. Please try again, or email me directly.", "error");
         return;
@@ -194,12 +188,12 @@
     });
   })();
 
-  // Reveal on scroll
+  // Reveal sections as they enter the viewport.
   (function initReveal() {
     const reveals = document.querySelectorAll(".reveal");
     if (!reveals.length) return;
 
-    // If IntersectionObserver is not supported, just reveal everything.
+    // No observer support: render all sections in their final state.
     if (!("IntersectionObserver" in window)) {
       reveals.forEach((el) => el.classList.add("in"));
       return;
@@ -220,7 +214,7 @@
     reveals.forEach((el) => io.observe(el));
   })();
 
-  // Header navigation: highlight active section based on scroll position
+  // Sync header nav active state to scroll position.
   const headerEl = document.getElementById("site-header");
 
   const headerNavLinks = Array.from(document.querySelectorAll(".nav a"))
@@ -242,7 +236,7 @@
 
   function syncHeaderHeightVar() {
     if (!headerEl) return;
-    // Keep CSS scroll offsets in sync with the actual sticky header height
+    // Keep CSS anchor offset aligned to measured header height.
     document.documentElement.style.setProperty(
       "--header-h",
       `${Math.ceil(headerEl.getBoundingClientRect().height)}px`
@@ -253,8 +247,7 @@
     return headerEl ? Math.ceil(headerEl.getBoundingClientRect().height) : 0;
   }
 
-  // Calculate activation offset: point below header where section becomes active
-  // Larger offset = activates next section earlier
+  // Activation line below the header that determines current section.
   function getActivationOffset() {
     const header = getHeaderOffset();
     const extra = Math.min(160, Math.round(window.innerHeight * 0.25));
@@ -266,12 +259,12 @@
 
     const offset = getActivationOffset();
 
-    // Bottom of page: force last section active
+    // At the bottom, force the final section active.
     const nearBottom =
       window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
     if (nearBottom) return sections[sections.length - 1].id;
 
-    // 1) Preferred: section that actually contains the activation line
+    // Preferred: section currently intersecting the activation line.
     for (let i = sections.length - 1; i >= 0; i--) {
       const rect = sections[i].getBoundingClientRect();
       if (rect.top <= offset && rect.bottom > offset) {
@@ -279,7 +272,7 @@
       }
     }
 
-    // 2) Fallback: last section whose top has crossed the activation line
+    // Fallback: most recent section whose top crossed the line.
     let lastPassed = null;
     for (const section of sections) {
       if (section.getBoundingClientRect().top <= offset) {
@@ -290,7 +283,7 @@
     return lastPassed;
   }
 
-  // Lock active state during programmatic navigation scroll to prevent flicker
+  // Lock active state briefly during anchor scrolling to prevent flicker.
   let lockedId = null;
   let lockUntil = 0;
 
@@ -308,7 +301,6 @@
   function updateActiveFromScroll() {
     const now = performance.now();
     if (lockedId && now < lockUntil) {
-      // Stay locked unless user interrupted
       setActiveNav(lockedId);
       return;
     }
@@ -319,12 +311,12 @@
     setActiveNav(getActiveSectionId());
   }
 
-  // Clear the lock if the user manually scrolls/interrupts
+  // Any manual interaction cancels the temporary lock.
   ["wheel", "touchstart", "keydown"].forEach((evt) => {
     window.addEventListener(evt, clearLock, { passive: true });
   });
 
-  // On nav click: set active immediately + lock while smooth scroll runs
+  // Mark clicked section active immediately.
   headerNavLinks.forEach((a) => {
     a.addEventListener("click", () => {
       const href = a.getAttribute("href");
@@ -333,13 +325,13 @@
     });
   });
 
-  // Throttle scroll/resize handlers using requestAnimationFrame
+  // Throttle scroll/resize work to animation frames.
   let ticking = false;
   function onScrollOrResize(e) {
     if (ticking) return;
     ticking = true;
     window.requestAnimationFrame(() => {
-      // ONLY sync height on resize, not scroll (prevent jitter)
+      // Recompute header height only on resize to avoid scroll jitter.
       if (e && e.type === "resize") {
         syncHeaderHeightVar();
       }
@@ -359,18 +351,20 @@
   }, 50);
   window.setTimeout(() => {
     syncHeaderHeightVar();
-  }, 300); // Final catch-all for lazy loads
+  }, 300);
 
-  // Interactive demo: code viewer and terminal simulation
+  // Interactive demo: tabbed code view + simulated terminal run.
   (function initDemo() {
     const codeContentEl = document.getElementById("code-content");
     const runBtn = document.getElementById("run-test-btn");
     const termBody = document.getElementById("term-body");
     const tabContainer = document.querySelector(".demo-tabs");
+    const codePanel = document.getElementById("code-panel");
+    const demoStatus = document.getElementById("demo-status");
 
-    if (!codeContentEl || !runBtn || !termBody || !tabContainer) return;
+    if (!codeContentEl || !runBtn || !termBody || !tabContainer || !codePanel) return;
 
-    // Demo data: code files and terminal output simulation
+    // Demo content is static by design; render as trusted HTML snippets.
     const demoData = {
       command: "npx playwright test auth.spec.ts",
       files: [
@@ -504,55 +498,88 @@
         }
       ],
       output: [
-         { html: '<span class="term-info">Running 2 tests using 1 worker</span>', delay: 800 },
-         { html: '<span class="term-muted">  1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow</span>', delay: 900 },
-         { html: '<span class="term-success">  ✓</span> <span class="term-muted">1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow (1.2s)</span>', delay: 100 },
-         { html: '<span class="term-muted">  2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow</span>', delay: 800 },
-         { html: '<span class="term-success">  ✓</span> <span class="term-muted">2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow (0.8s)</span>', delay: 100 },
-         { html: '', delay: 50 },
-         { html: '<span class="term-success">  2 passed</span> <span class="term-muted">(2.4s)</span>', delay: 50 }
+         { segments: [{ className: "term-info", text: "Running 2 tests using 1 worker" }], delay: 800 },
+         { segments: [{ className: "term-muted", text: "  1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow" }], delay: 900 },
+         { segments: [{ className: "term-success", text: "  ✓" }, { className: "term-muted", text: " 1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow (1.2s)" }], delay: 100 },
+         { segments: [{ className: "term-muted", text: "  2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow" }], delay: 800 },
+         { segments: [{ className: "term-success", text: "  ✓" }, { className: "term-muted", text: " 2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow (0.8s)" }], delay: 100 },
+         { segments: [], delay: 50 },
+         { segments: [{ className: "term-success", text: "  2 passed" }, { className: "term-muted", text: " (2.4s)" }], delay: 50 }
       ]
     };
 
     let activeFileIndex = 0;
     let isRunning = false;
 
+    function announceDemo(message) {
+      if (demoStatus) demoStatus.textContent = message;
+    }
+
     function createTabs() {
-      tabContainer.innerHTML = "";
+      tabContainer.replaceChildren();
       
       demoData.files.forEach((file, index) => {
         const btn = document.createElement("button");
         btn.className = `demo-tab ${index === activeFileIndex ? "active" : ""}`;
+        btn.id = `demo-tab-${file.id}`;
         btn.setAttribute("role", "tab");
-        btn.setAttribute("aria-selected", index === activeFileIndex);
+        btn.setAttribute("aria-selected", String(index === activeFileIndex));
         btn.setAttribute("aria-controls", "code-panel");
+        btn.tabIndex = index === activeFileIndex ? 0 : -1;
         btn.textContent = file.label;
         
         btn.addEventListener("click", () => {
-          activeFileIndex = index;
-          updateTabClasses();
-          renderCode();
+          setActiveTab(index, false);
         });
         
         tabContainer.appendChild(btn);
       });
     }
 
-    function updateTabClasses() {
+    function updateTabClasses(focusActive = false) {
       const tabs = tabContainer.querySelectorAll(".demo-tab");
       tabs.forEach((tab, index) => {
         const isActive = index === activeFileIndex;
         tab.classList.toggle("active", isActive);
-        tab.setAttribute("aria-selected", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+        if (isActive && focusActive) tab.focus();
       });
+    }
+
+    function setActiveTab(index, focusActive) {
+      if (index < 0 || index >= demoData.files.length) return;
+      activeFileIndex = index;
+      updateTabClasses(focusActive);
+      renderCode();
+    }
+
+    function handleTabKeydown(e) {
+      const target = e.target;
+      if (!(target instanceof HTMLElement) || !target.classList.contains("demo-tab")) return;
+
+      const count = demoData.files.length;
+      if (!count) return;
+
+      let nextIndex = activeFileIndex;
+      if (e.key === "ArrowRight") nextIndex = (activeFileIndex + 1) % count;
+      else if (e.key === "ArrowLeft") nextIndex = (activeFileIndex - 1 + count) % count;
+      else if (e.key === "Home") nextIndex = 0;
+      else if (e.key === "End") nextIndex = count - 1;
+      else return;
+
+      e.preventDefault();
+      setActiveTab(nextIndex, true);
     }
 
     function renderCode() {
       const file = demoData.files[activeFileIndex];
+      if (!file) return;
       codeContentEl.innerHTML = file.code.trim();
+      codePanel.setAttribute("aria-labelledby", `demo-tab-${file.id}`);
     }
 
-    // Terminal animation: type text character by character
+    // Terminal typing effect.
     async function typeText(text, element, delay = 30) {
       for (const char of text) {
         element.textContent += char;
@@ -560,8 +587,26 @@
       }
     }
     
+    function createPromptLine(withCursor = true) {
+      const line = document.createElement("div");
+      line.className = "term-line";
+
+      const prompt = document.createElement("span");
+      prompt.className = "term-prompt";
+      prompt.textContent = "$";
+      line.appendChild(prompt);
+
+      line.appendChild(document.createTextNode(" "));
+      if (withCursor) {
+        const cursor = document.createElement("span");
+        cursor.className = "term-cursor";
+        line.appendChild(cursor);
+      }
+      return line;
+    }
+
     function resetTerminal() {
-        termBody.innerHTML = '<div class="term-line"><span class="term-prompt">$</span> <span class="term-cursor"></span></div>';
+      termBody.replaceChildren(createPromptLine(true));
     }
 
     async function runTerminal() {
@@ -572,43 +617,46 @@
       const btnLabel = runBtn.querySelector(".btn-label");
       if (btnLabel) btnLabel.textContent = "Running...";
       runBtn.setAttribute("aria-label", "Running suite...");
+      announceDemo("Running demo test suite.");
 
-      // Auto-scroll to terminal on mobile so user sees the action
+      // Keep terminal in view on smaller screens.
       if (window.innerWidth < 768) {
-        termBody.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const shouldScrollSmooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        termBody.scrollIntoView({ behavior: shouldScrollSmooth ? "smooth" : "auto", block: "center" });
       }
       
-      // Clear terminal (keep prompt)
       resetTerminal();
       
       const lines = termBody.querySelectorAll(".term-line");
       const activeLine = lines[lines.length - 1];
       const cursor = activeLine.querySelector(".term-cursor");
       
-      // Remove cursor from prompt line temporarily while typing
-      cursor.remove();
+      if (cursor) cursor.remove();
       
-      // 1. Type command
       const cmdSpan = document.createElement("span");
       activeLine.appendChild(cmdSpan);
       await typeText(demoData.command, cmdSpan, 40);
       
-      activeLine.appendChild(cursor); // Put cursor back
-      await new Promise(r => setTimeout(r, 600)); // Wait before running
+      if (cursor) activeLine.appendChild(cursor);
+      await new Promise(r => setTimeout(r, 600));
       
-      // 2. Output lines
-      const addLine = (html, delay = 100) => {
+      const addLine = (segments, delay = 100) => {
         return new Promise(resolve => {
-          // Remove cursor from current last line
           const currentCursor = termBody.querySelector(".term-cursor");
           if (currentCursor) currentCursor.remove();
           
           const div = document.createElement("div");
           div.className = "term-line";
-          div.innerHTML = html; // Allow HTML styling
+
+          for (const segment of segments) {
+            const span = document.createElement("span");
+            if (segment.className) span.className = segment.className;
+            span.textContent = segment.text;
+            div.appendChild(span);
+          }
+
           termBody.appendChild(div);
           
-          // Scroll to bottom
           termBody.scrollTop = termBody.scrollHeight;
           
           setTimeout(resolve, delay);
@@ -616,20 +664,22 @@
       };
 
       for (const line of demoData.output) {
-         await addLine(line.html, line.delay);
+         await addLine(line.segments, line.delay);
       }
       
-      await addLine('<span class="term-prompt">$</span> <span class="term-cursor"></span>'); // Final prompt with cursor
+      termBody.appendChild(createPromptLine(true));
+      termBody.scrollTop = termBody.scrollHeight;
 
       isRunning = false;
       runBtn.disabled = false;
       runBtn.setAttribute("aria-label", "Run test suite");
+      announceDemo("Demo test suite completed. 2 tests passed.");
       if (btnLabel) btnLabel.textContent = "Run Again";
     }
 
     runBtn.addEventListener("click", runTerminal);
+    tabContainer.addEventListener("keydown", handleTabKeydown);
     
-    // Init
     createTabs();
     renderCode();
   })();

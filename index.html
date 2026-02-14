@@ -1,11 +1,10 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Marks JS availability so CSS can progressively enhance (no hidden content if JS is blocked). -->
+    <!-- Add a JS hook early so CSS can progressively enhance reveal states. -->
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -19,15 +18,15 @@
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://geoffreymajor.com/" />
 
-    <!-- Favicon -->
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="./assets/favicon-gm.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="./assets/favicon-gm.png" />
 
-    <!-- Preload the hero avatar (must live in <head> to be honored consistently) -->
+    <!-- Prioritize hero avatar request on first paint. -->
     <link rel="preload" as="image" href="./assets/avatar.webp" fetchpriority="high" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph metadata -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Geoffrey Major | Quality Assurance Engineer" />
     <meta
@@ -37,7 +36,7 @@
     <meta property="og:url" content="https://geoffreymajor.com/" />
     <meta property="og:image" content="https://geoffreymajor.com/assets/og-image.png" />
 
-    <!-- Twitter -->
+    <!-- Twitter metadata -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:image" content="https://geoffreymajor.com/assets/og-image.png" />
     <meta name="twitter:title" content="Geoffrey Major | Quality Assurance Engineer" />
@@ -46,7 +45,7 @@
       content="QA engineer focused on pragmatic testing, automation, and release confidence."
     />
 
-    <!-- JSON-LD: Person -->
+    <!-- Structured data for SEO/social parsers -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -67,13 +66,8 @@
     <style>
       :root {
         --bg:#0b0d10;
-        --surface:rgba(255,255,255,.05);
         --text:#e9edf2;
-        --muted:#a9b3bf;
-        --line:rgba(255,255,255,.12);
         --accent:#5dd6ff;
-        --radius:14px;
-        --shadow:0 14px 34px rgba(0,0,0,.35);
         --max:1040px;
         --header-h:68px;
       }
@@ -91,8 +85,6 @@
         line-height:1.55;
       }
 
-      a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
-
       .container{
         width:100%;
         max-width:var(--max);
@@ -100,7 +92,6 @@
         padding:22px;
       }
 
-      /* Header */
       .site-header{
         position:sticky;
         top:0;
@@ -134,18 +125,11 @@
         background:var(--accent);
       }
 
-      /* Hero */
       .hero{
         display:grid;
         grid-template-columns:1.25fr .75fr;
         gap:28px;
         padding-top:28px;
-      }
-
-      .kicker{
-        margin:0 0 10px;
-        color:var(--muted);
-        font-weight:850;
       }
 
       h1{
@@ -154,39 +138,8 @@
         line-height:1.08;
       }
 
-      .lead{
-        margin:0 0 16px;
-        color:var(--muted);
-        max-width:65ch;
-      }
-
-      .hero-actions{
-        display:flex;
-        gap:8px;
-        flex-wrap:wrap;
-        margin:14px 0 12px;
-      }
-
-      .hero-aside{
-        display:grid;
-        gap:14px;
-        justify-items:end;
-      }
-
-      .avatar{
-        width:100%;
-        max-width:280px;
-        aspect-ratio:1/1;
-        border-radius:var(--radius);
-        border:1px solid var(--line);
-        box-shadow:var(--shadow);
-        object-fit:cover;
-        display:block;
-      }
-
       @media(max-width:900px){
         .hero{grid-template-columns:1fr}
-        .avatar-card{justify-content:center}
         h1{font-size:34px;line-height:1.14}
       }
     </style>
@@ -223,10 +176,10 @@
     </header>
 
     <main id="main" class="container" role="main">
-      <!-- HERO -->
+      <!-- Hero -->
       <section id="top" class="hero">
         <div class="hero-copy">
-          <!-- Mobile-only profile strip -->
+          <!-- Compact identity block shown on mobile -->
           <div class="profile-strip" aria-label="Profile">
             <img class="avatar-small" src="./assets/avatar.webp" alt="Portrait of Geoffrey Major" width="56" height="56" decoding="async" fetchpriority="high" />
             <div class="profile-strip-text">
@@ -284,7 +237,7 @@
               Resume
             </a>
 
-            <!-- Desktop-only LinkedIn and GitHub icons beside resume button -->
+            <!-- Desktop social links beside the primary CTA -->
             <a
               class="social-link desktop-only"
               href="https://github.com/geoffmajor"
@@ -309,7 +262,7 @@
           <p class="meta desktop-only hero-anim hero-anim-5">Reno, NV • Remote</p>
           <p class="meta desktop-only hero-anim hero-anim-6">Quality Assurance Engineer at Worth AI</p>
 
-          <!-- Mobile: show focus areas beneath hero copy -->
+          <!-- Mobile-only focus areas -->
           <div class="panel mobile-only hero-anim hero-anim-5">
             <h2 class="panel-title">Focus Areas</h2>
             <ul class="bullets">
@@ -321,7 +274,7 @@
           </div>
         </div>
 
-        <!-- Desktop-only aside -->
+        <!-- Desktop-only right rail -->
         <div class="hero-aside desktop-only" aria-labelledby="focus-areas-title">
           <div class="avatar-card">
             <img
@@ -347,7 +300,7 @@
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
+      <!-- Experience -->
       <section id="experience" class="section reveal">
         <div class="section-head">
           <div class="section-title-row">
@@ -453,7 +406,7 @@
         </div>
       </section>
 
-      <!-- SKILLS -->
+      <!-- Skills -->
       <section id="skills" class="section reveal">
         <div class="section-head">
           <div class="section-title-row">
@@ -492,7 +445,7 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
+      <!-- Projects -->
       <section id="projects" class="section reveal">
         <div class="section-head">
           <div class="section-title-row">
@@ -581,7 +534,7 @@
         </article>
       </section>
 
-      <!-- Interactive Demo: Shows automation framework patterns -->
+      <!-- Interactive demo of framework structure and test output -->
       <article class="card project demo-card">
         <header class="card-head">
           <div class="card-main">
@@ -606,13 +559,40 @@
             </ul>
           </div>
 
-          <!-- Interactive Demo Region -->
+          <!-- Interactive demo -->
           <div class="demo-wrapper">
             <div class="demo-header">
               <div class="demo-tabs" role="tablist" aria-label="Code files">
-                <button class="demo-tab active" role="tab" aria-selected="true">auth.spec.ts</button>
-                <button class="demo-tab" role="tab" aria-selected="false">auth-pages.ts</button>
-                <button class="demo-tab" role="tab" aria-selected="false">auth-utils.ts</button>
+                <button
+                  id="demo-tab-auth-spec"
+                  class="demo-tab active"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="code-panel"
+                  tabindex="0"
+                >
+                  auth.spec.ts
+                </button>
+                <button
+                  id="demo-tab-auth-pages"
+                  class="demo-tab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="code-panel"
+                  tabindex="-1"
+                >
+                  auth-pages.ts
+                </button>
+                <button
+                  id="demo-tab-auth-utils"
+                  class="demo-tab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="code-panel"
+                  tabindex="-1"
+                >
+                  auth-utils.ts
+                </button>
               </div>
               <div class="demo-actions">
                 <button id="run-test-btn" class="button primary button-sm" aria-label="Run test">
@@ -621,7 +601,14 @@
               </div>
             </div>
 
-            <div class="code-window" id="code-panel" role="tabpanel" tabindex="0" aria-label="Code Source View">
+            <div
+              class="code-window"
+              id="code-panel"
+              role="tabpanel"
+              tabindex="0"
+              aria-label="Code Source View"
+              aria-labelledby="demo-tab-auth-spec"
+            >
               <pre><code id="code-content" class="language-typescript"></code></pre>
             </div>
 
@@ -632,15 +619,16 @@
                 <div class="term-dot green"></div>
                 <span class="term-title">bash — 80x24</span>
               </div>
-              <div class="terminal-body" id="term-body" tabindex="0" aria-label="Terminal Output" aria-live="polite">
+              <div class="terminal-body" id="term-body" tabindex="0" aria-label="Terminal Output" aria-live="off">
                 <div class="term-line"><span class="term-prompt">$</span> <span class="term-cursor"></span></div>
               </div>
             </div>
+            <p class="sr-only" id="demo-status" role="status" aria-live="polite" aria-atomic="true"></p>
           </div>
         </div>
       </article>
 
-      <!-- CONTACT -->
+      <!-- Contact -->
       <section id="contact" class="section reveal">
         <div class="section-head">
           <div class="section-title-row">
