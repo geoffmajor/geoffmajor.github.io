@@ -64,7 +64,7 @@
 
     function focusFirstInvalid(fieldId) {
       if (!fieldId) return;
-      
+
       const el = form.querySelector("#" + fieldId);
       if (!el) return;
 
@@ -76,11 +76,13 @@
       const offsetPosition = elementPosition - headerOffset - extraPadding;
 
       // Respect reduced motion preferences.
-      const shouldScrollSmooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const shouldScrollSmooth = !window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: shouldScrollSmooth ? "smooth" : "auto"
+        behavior: shouldScrollSmooth ? "smooth" : "auto",
       });
 
       el.focus({ preventScroll: true });
@@ -106,7 +108,8 @@
       }
 
       const anyInvalid = ["name", "email", "message"].some(
-        (id) => form.querySelector("#" + id)?.getAttribute("aria-invalid") === "true"
+        (id) =>
+          form.querySelector("#" + id)?.getAttribute("aria-invalid") === "true",
       );
       if (!anyInvalid && statusEl.classList.contains("error")) setStatus("");
     }
@@ -126,7 +129,10 @@
       const messageEl = form.querySelector("#message");
 
       if (!nameEl || !emailEl || !messageEl) {
-        setStatus("Something went wrong. Please try again, or email me directly.", "error");
+        setStatus(
+          "Something went wrong. Please try again, or email me directly.",
+          "error",
+        );
         return;
       }
 
@@ -170,7 +176,7 @@
         const response = await fetch(form.action, {
           method: "POST",
           body: data,
-          headers: { Accept: "application/json" }
+          headers: { Accept: "application/json" },
         });
 
         if (response.ok) {
@@ -178,10 +184,16 @@
           clearFieldErrors();
           setStatus("✓ Thanks. Your message was sent.", "ok");
         } else {
-          setStatus("Something went wrong. Please try again, or email me directly.", "error");
+          setStatus(
+            "Something went wrong. Please try again, or email me directly.",
+            "error",
+          );
         }
       } catch (_err) {
-        setStatus("Network error. Please try again, or email me directly.", "error");
+        setStatus(
+          "Network error. Please try again, or email me directly.",
+          "error",
+        );
       } finally {
         setSubmitting(false);
       }
@@ -208,7 +220,7 @@
           }
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.12 },
     );
 
     reveals.forEach((el) => io.observe(el));
@@ -239,7 +251,7 @@
     // Keep CSS anchor offset aligned to measured header height.
     document.documentElement.style.setProperty(
       "--header-h",
-      `${Math.ceil(headerEl.getBoundingClientRect().height)}px`
+      `${Math.ceil(headerEl.getBoundingClientRect().height)}px`,
     );
   }
 
@@ -261,7 +273,8 @@
 
     // At the bottom, force the final section active.
     const nearBottom =
-      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 4;
     if (nearBottom) return sections[sections.length - 1].id;
 
     // Preferred: section currently intersecting the activation line.
@@ -362,7 +375,8 @@
     const codePanel = document.getElementById("code-panel");
     const demoStatus = document.getElementById("demo-status");
 
-    if (!codeContentEl || !runBtn || !termBody || !tabContainer || !codePanel) return;
+    if (!codeContentEl || !runBtn || !termBody || !tabContainer || !codePanel)
+      return;
 
     // Demo content is static by design; render as trusted HTML snippets.
     const demoData = {
@@ -409,7 +423,7 @@
     <span class="k">await</span> <span class="f">expect</span>(forgotPage.<span class="v">successMessage</span>).<span class="f">toBeVisible</span>();
   });
 });
-`
+`,
         },
         {
           id: "auth-pages",
@@ -473,7 +487,7 @@
     <span class="k">await</span> <span class="v">this</span>.submit.<span class="f">click</span>();
   }
 }
-`
+`,
         },
         {
           id: "auth-utils",
@@ -494,18 +508,63 @@
   <span class="k">const</span> loginPage = <span class="k">new</span> <span class="f">LoginPage</span>(page);
   <span class="k">await</span> loginPage.<span class="f">login</span>(DEFAULT_USER.email, DEFAULT_USER.pass);
 }
-`
-        }
+`,
+        },
       ],
       output: [
-         { segments: [{ className: "term-info", text: "Running 2 tests using 1 worker" }], delay: 800 },
-         { segments: [{ className: "term-muted", text: "  1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow" }], delay: 900 },
-         { segments: [{ className: "term-success", text: "  ✓" }, { className: "term-muted", text: " 1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow (1.2s)" }], delay: 100 },
-         { segments: [{ className: "term-muted", text: "  2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow" }], delay: 800 },
-         { segments: [{ className: "term-success", text: "  ✓" }, { className: "term-muted", text: " 2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow (0.8s)" }], delay: 100 },
-         { segments: [], delay: 50 },
-         { segments: [{ className: "term-success", text: "  2 passed" }, { className: "term-muted", text: " (2.4s)" }], delay: 50 }
-      ]
+        {
+          segments: [
+            { className: "term-info", text: "Running 2 tests using 1 worker" },
+          ],
+          delay: 800,
+        },
+        {
+          segments: [
+            {
+              className: "term-muted",
+              text: "  1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow",
+            },
+          ],
+          delay: 900,
+        },
+        {
+          segments: [
+            { className: "term-success", text: "  ✓" },
+            {
+              className: "term-muted",
+              text: " 1) [chromium] › auth.spec.ts:5 › Authentication › admin login flow (1.2s)",
+            },
+          ],
+          delay: 100,
+        },
+        {
+          segments: [
+            {
+              className: "term-muted",
+              text: "  2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow",
+            },
+          ],
+          delay: 800,
+        },
+        {
+          segments: [
+            { className: "term-success", text: "  ✓" },
+            {
+              className: "term-muted",
+              text: " 2) [chromium] › auth.spec.ts:14 › Authentication › reset password flow (0.8s)",
+            },
+          ],
+          delay: 100,
+        },
+        { segments: [], delay: 50 },
+        {
+          segments: [
+            { className: "term-success", text: "  2 passed" },
+            { className: "term-muted", text: " (2.4s)" },
+          ],
+          delay: 50,
+        },
+      ],
     };
 
     let activeFileIndex = 0;
@@ -517,7 +576,7 @@
 
     function createTabs() {
       tabContainer.replaceChildren();
-      
+
       demoData.files.forEach((file, index) => {
         const btn = document.createElement("button");
         btn.className = `demo-tab ${index === activeFileIndex ? "active" : ""}`;
@@ -527,11 +586,11 @@
         btn.setAttribute("aria-controls", "code-panel");
         btn.tabIndex = index === activeFileIndex ? 0 : -1;
         btn.textContent = file.label;
-        
+
         btn.addEventListener("click", () => {
           setActiveTab(index, false);
         });
-        
+
         tabContainer.appendChild(btn);
       });
     }
@@ -556,14 +615,19 @@
 
     function handleTabKeydown(e) {
       const target = e.target;
-      if (!(target instanceof HTMLElement) || !target.classList.contains("demo-tab")) return;
+      if (
+        !(target instanceof HTMLElement) ||
+        !target.classList.contains("demo-tab")
+      )
+        return;
 
       const count = demoData.files.length;
       if (!count) return;
 
       let nextIndex = activeFileIndex;
       if (e.key === "ArrowRight") nextIndex = (activeFileIndex + 1) % count;
-      else if (e.key === "ArrowLeft") nextIndex = (activeFileIndex - 1 + count) % count;
+      else if (e.key === "ArrowLeft")
+        nextIndex = (activeFileIndex - 1 + count) % count;
       else if (e.key === "Home") nextIndex = 0;
       else if (e.key === "End") nextIndex = count - 1;
       else return;
@@ -583,10 +647,10 @@
     async function typeText(text, element, delay = 30) {
       for (const char of text) {
         element.textContent += char;
-        await new Promise(r => setTimeout(r, delay));
+        await new Promise((r) => setTimeout(r, delay));
       }
     }
-    
+
     function createPromptLine(withCursor = true) {
       const line = document.createElement("div");
       line.className = "term-line";
@@ -613,7 +677,7 @@
       if (isRunning) return;
       isRunning = true;
       runBtn.disabled = true;
-      
+
       const btnLabel = runBtn.querySelector(".btn-label");
       if (btnLabel) btnLabel.textContent = "Running...";
       runBtn.setAttribute("aria-label", "Running suite...");
@@ -621,30 +685,35 @@
 
       // Keep terminal in view on smaller screens.
       if (window.innerWidth < 768) {
-        const shouldScrollSmooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        termBody.scrollIntoView({ behavior: shouldScrollSmooth ? "smooth" : "auto", block: "center" });
+        const shouldScrollSmooth = !window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        termBody.scrollIntoView({
+          behavior: shouldScrollSmooth ? "smooth" : "auto",
+          block: "center",
+        });
       }
-      
+
       resetTerminal();
-      
+
       const lines = termBody.querySelectorAll(".term-line");
       const activeLine = lines[lines.length - 1];
       const cursor = activeLine.querySelector(".term-cursor");
-      
+
       if (cursor) cursor.remove();
-      
+
       const cmdSpan = document.createElement("span");
       activeLine.appendChild(cmdSpan);
       await typeText(demoData.command, cmdSpan, 40);
-      
+
       if (cursor) activeLine.appendChild(cursor);
-      await new Promise(r => setTimeout(r, 600));
-      
+      await new Promise((r) => setTimeout(r, 600));
+
       const addLine = (segments, delay = 100) => {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const currentCursor = termBody.querySelector(".term-cursor");
           if (currentCursor) currentCursor.remove();
-          
+
           const div = document.createElement("div");
           div.className = "term-line";
 
@@ -656,17 +725,17 @@
           }
 
           termBody.appendChild(div);
-          
+
           termBody.scrollTop = termBody.scrollHeight;
-          
+
           setTimeout(resolve, delay);
         });
       };
 
       for (const line of demoData.output) {
-         await addLine(line.segments, line.delay);
+        await addLine(line.segments, line.delay);
       }
-      
+
       termBody.appendChild(createPromptLine(true));
       termBody.scrollTop = termBody.scrollHeight;
 
@@ -679,9 +748,8 @@
 
     runBtn.addEventListener("click", runTerminal);
     tabContainer.addEventListener("keydown", handleTabKeydown);
-    
+
     createTabs();
     renderCode();
   })();
-
 })();
